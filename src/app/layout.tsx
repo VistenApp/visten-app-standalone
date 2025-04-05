@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { Zen_Dots } from 'next/font/google';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../theme';
+import Container from "@mui/material/Container";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const zen_dots = Zen_Dots({
+  weight: "400",
+  variable: '--font-zen-dots',
 });
 
 export const metadata: Metadata = {
@@ -23,9 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang="en" className={zen_dots.variable}>
+      <body>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <Container sx={{ mt: 5 }}>
+              {children}
+            </Container>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
