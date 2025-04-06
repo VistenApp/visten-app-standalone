@@ -12,7 +12,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Box sx={{ textAlign: "center"}}>
+    <Box sx={{ textAlign: "center", mt: 30 }}>
       <Typographie variant="h3" component="h3">
         WELCOME TO VISTEN (ㆆ _ ㆆ)
       </Typographie>

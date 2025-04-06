@@ -9,8 +9,11 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#0C0C0C',
-    }
+      default:'#080808',
+    },
+    primary: {
+      main: '#f3f3f3',
+    },
   },
   components: {
     MuiTextField: {
@@ -19,8 +22,8 @@ const theme = createTheme({
             margin: '8px',
         },
       },
-    }
-  },
+    },
+  }
 });
 
 export default theme;

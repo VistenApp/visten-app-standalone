@@ -1,22 +1,29 @@
 'use client';
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Link from 'next/link';
-import HomeIcon from '@mui/icons-material/Home';
+import { Box, Button } from '@mui/material';
 import { usePathname } from 'next/navigation';
+import * as React from 'react';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import HomeIcon from '@mui/icons-material/Home';
+import Link from 'next/link';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import TvIcon from '@mui/icons-material/Tv';
 import UserMenu from './UserMenu';
-import { Box } from '@mui/material';
+import VideocamIcon from '@mui/icons-material/Videocam';
 
 const Navbar = () => {
   const pathname = usePathname();
 
   const getActiveTabValue = () => {
-    const paths = {
-      '/': 0,
-    }
-    if (pathname in paths) {
-      return paths[pathname as keyof typeof paths];
+    const paths = [
+      '/',
+      '/poke-manager',
+      '/show-manager',
+      '/film-picker',
+    ]
+    const index = paths.indexOf(pathname);
+    if (index !== -1) {
+      return index;
     }
     return 0;
   };
@@ -38,20 +45,22 @@ const Navbar = () => {
       mb: 5,
       justifyContent: 'space-between' 
     }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        role="navigation"
-        centered
-      >
-        <Tab
-          label="Home"
-          icon={<HomeIcon />}
-          iconPosition="start"
-          component={Link}
-          href="/"
-        />
-      </Tabs>
+      <Button href="/">
+        <HomeIcon />
+        Home
+      </Button>
+      <Button href="/">
+        <CatchingPokemonIcon />
+        Poke Manager
+      </Button>
+      <Button href="/">
+        <TvIcon />
+        Show Manager
+      </Button>
+      <Button href="/">
+        <VideocamIcon />
+        Film Picker
+      </Button>
       <UserMenu />
     </Box>
   );

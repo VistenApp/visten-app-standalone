@@ -31,11 +31,11 @@ export default function UserMenu() {
   }
 
   if (isLoggedIn === null) {
-    return null;
+    return <div style={{ width: "5ch"}}></div>;
   }
 
   return (
-    <div>
+    <div style={{ width: "5ch"}}>
       {isLoggedIn ? (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Button
