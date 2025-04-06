@@ -6,17 +6,15 @@ import { get_profile, change_password } from '../service';
 
 export default function Profile() {
   React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (!localStorage.getItem("token")) {
-        window.location.href = "/login";
-      } else {
-          get_profile().then((data) => {
-            setUsername(data.username);
-          }).catch((error) => {
-            setAlertMessage(error.message);
-            setAlertSeverity("error");
-          });
-      }
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/login";
+    } else {
+        get_profile().then((data) => {
+          setUsername(data.username);
+        }).catch((error) => {
+          setAlertMessage(error.message);
+          setAlertSeverity("error");
+        });
     }
   }, []);
 
@@ -26,11 +24,11 @@ export default function Profile() {
 
 
   return (
-    <Box sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, "textAlign":"center" }}>
-      <Typography variant="h4">
-        Profile
-      </Typography>
-      <FormControl>
+    <Box sx={{ "textAlign":"center" }}>
+      <FormControl sx={{ width: "21ch" }}>
+        <Typography variant="h4">
+          PROFILE
+        </Typography>
         {alertMessage && (
           <Alert severity={alertSeverity} sx={{mb: 1}}>{alertMessage}</Alert>
         )}

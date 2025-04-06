@@ -5,20 +5,16 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (localStorage.getItem("token")) {
-        setIsLoggedIn(true);
-      }
-    }
+    setIsLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
   return (
     <Box sx={{ textAlign: "center"}}>
       <Typographie variant="h3" component="h3">
-        Welcome to Visten (ㆆ _ ㆆ)
+        WELCOME TO VISTEN (ㆆ _ ㆆ)
       </Typographie>
         {!isLoggedIn && (
           <div>

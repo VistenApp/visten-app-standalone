@@ -6,10 +6,8 @@ import { login } from '../service';
 
 export default function Login() {
   React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (localStorage.getItem("token")) {
-        window.location.href = "/profile";
-      }
+    if (localStorage.getItem("token")) {
+      window.location.href = "/profile";
     }
   }, []);
 
@@ -18,7 +16,6 @@ export default function Login() {
   const [alertMessage, setAlertMessage] = React.useState("");
 
   function handleLogin() {
-    setAlertMessage("");
     if (!username || !password) {
       setAlertMessage("Missing username or password");
       return;
@@ -31,10 +28,10 @@ export default function Login() {
   }
 
   return (
-    <Box sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, "textAlign":"center" }}>
-    <FormControl>
+    <Box sx={{ "textAlign":"center" }}>
+    <FormControl sx={{ width: "21ch" }}>
       <Typography variant="h4">
-        Login
+        LOGIN
       </Typography>
       {alertMessage && (
         <Alert severity="error">{alertMessage}</Alert>

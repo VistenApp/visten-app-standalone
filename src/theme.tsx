@@ -12,6 +12,15 @@ const theme = createTheme({
       default: '#0C0C0C',
     }
   },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+            margin: '8px',
+        },
+      },
+    }
+  },
 });
 
 export default theme;

@@ -4,19 +4,16 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Link from 'next/link';
 import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import Box from '@mui/material/Box';
 import { usePathname } from 'next/navigation';
+import UserMenu from './UserMenu';
+import { Box } from '@mui/material';
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const getActiveTabValue = () => {
     const paths = {
       '/': 0,
-      '/login': 1,
-      '/profile': 1,
     }
     if (pathname in paths) {
       return paths[pathname as keyof typeof paths];
@@ -30,25 +27,17 @@ const Navbar = () => {
     setValue(getActiveTabValue());
   }, [pathname]);
 
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (localStorage.getItem("token")) {
-        setIsLoggedIn(true);
-      }
-    }
-  }, []);
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      width="100%" 
-      sx={{ mb: 5 }}
-    >
+    <Box sx={{
+      display: 'flex',
+      alignItems: 'center',
+      mb: 5,
+      justifyContent: 'space-between' 
+    }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -62,22 +51,8 @@ const Navbar = () => {
           component={Link}
           href="/"
         />
-        {isLoggedIn ? (
-          <Tab
-            label="Profile"
-            icon={<PersonIcon />}
-            iconPosition="start"
-            component={Link}
-            href="/profile"
-          />
-        ) : (
-          <Tab
-            label="Login"
-            component={Link}
-            href="/login"
-          />
-        )}
       </Tabs>
+      <UserMenu />
     </Box>
   );
 };
