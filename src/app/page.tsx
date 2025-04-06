@@ -1,16 +1,35 @@
+'use client';
+import React from 'react';
 import Typographie from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem("token")) {
+        setIsLoggedIn(true);
+      }
+    }
+  }, []);
+
   return (
     <Box sx={{ textAlign: "center"}}>
       <Typographie variant="h3" component="h3">
         Welcome to Visten (ㆆ _ ㆆ)
       </Typographie>
-      <Button variant="outlined" href="/login" sx={{ mt: 5 }}>
-        Login
-      </Button>
+        {!isLoggedIn && (
+          <div>
+            <Typographie variant="h5" component="h5" sx={{ mt: 3 }}>
+              This app is for private use only, you can't sign up sorry...
+            </Typographie>
+            <Button variant="outlined" href="/login" sx={{ mt: 5 }}>
+              Login
+            </Button>
+          </div>
+        )}
     </Box>
   );
 }

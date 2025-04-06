@@ -1,40 +1,64 @@
 'use client';
 
 import * as React from 'react';
-import { Box, Typography, Button, TextField, FormControl } from '@mui/material';
+import { Alert, Box, Typography, Button, TextField, FormControl } from '@mui/material';
+import { login } from '../service';
 
 export default function Login() {
-
-    function handleLogin() {
-        console.log("Login button clicked");
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem("token")) {
+        window.location.href = "/profile";
+      }
     }
+  }, []);
 
-    return (
-        <Box sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, "textAlign":"center" }}>
-        <FormControl>
-            <Typography variant="h4">
-                Login
-            </Typography>
-            <div>
-                <TextField
-                required
-                id="outlined-username-input"
-                label="Username"
-                />
-            </div>
-            <div>
-                <TextField
-                required
-                id="outlined-password-input"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                />
-            </div>
-            <div>
-                <Button variant="outlined" onClick={handleLogin}>Login</Button>
-            </div>
-        </FormControl>
-        </Box>
-    )
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [alertMessage, setAlertMessage] = React.useState("");
+
+  function handleLogin() {
+    setAlertMessage("");
+    if (!username || !password) {
+      setAlertMessage("Missing username or password");
+      return;
+    }
+    login(username, password).then(() => {
+      window.location.href = "/";
+    }).catch((error: any) => {
+      setAlertMessage(error.message);
+    });
+  }
+
+  return (
+    <Box sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, "textAlign":"center" }}>
+    <FormControl>
+      <Typography variant="h4">
+        Login
+      </Typography>
+      {alertMessage && (
+        <Alert severity="error">{alertMessage}</Alert>
+      )}
+      <TextField
+        required
+        id="outlined-username-input"
+        label="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <TextField
+        required
+        id="outlined-password-input"
+        label="Password"
+        type="password"
+        autoComplete="current-password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <div>
+        <Button variant="outlined" onClick={handleLogin}>Login</Button>
+      </div>
+    </FormControl>
+    </Box>
+  )
 }

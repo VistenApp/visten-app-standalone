@@ -8,6 +8,9 @@ const theme = createTheme({
   },
   palette: {
     mode: 'dark',
+    background: {
+      default: '#0C0C0C',
+    }
   },
 });
 
