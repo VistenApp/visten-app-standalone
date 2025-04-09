@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Alert, Box, Typography, Button, TextField, FormControl } from '@mui/material';
 import { get_profile, change_password } from '../service';
+import PageWrapper from '@/app/(components)/PageWrapper';
 
 export default function Profile() {
   React.useEffect(() => {
@@ -24,11 +25,8 @@ export default function Profile() {
 
 
   return (
-    <Box sx={{ "textAlign":"center" }}>
+    <PageWrapper title="PROFILE" alertMessage={alertMessage}>
       <FormControl sx={{ width: "21ch" }}>
-        <Typography variant="h4">
-          PROFILE
-        </Typography>
         {alertMessage && (
           <Alert severity={alertSeverity} sx={{mb: 1}}>{alertMessage}</Alert>
         )}
@@ -40,7 +38,7 @@ export default function Profile() {
         />
         <PasswordChangeForm />
       </FormControl>
-    </Box>
+    </PageWrapper>
   )
 }
 

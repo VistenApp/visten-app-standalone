@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Alert, Box, Typography, Button, TextField, FormControl } from '@mui/material';
 import { login } from '../service';
+import PageWrapper from '@/app/(components)/PageWrapper';
 
 export default function Login() {
   React.useEffect(() => {
@@ -28,34 +29,31 @@ export default function Login() {
   }
 
   return (
-    <Box sx={{ "textAlign":"center" }}>
-    <FormControl sx={{ width: "21ch" }}>
-      <Typography variant="h4">
-        LOGIN
-      </Typography>
-      {alertMessage && (
-        <Alert severity="error">{alertMessage}</Alert>
-      )}
-      <TextField
-        required
-        id="outlined-username-input"
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <TextField
-        required
-        id="outlined-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <div>
-        <Button variant="outlined" onClick={handleLogin}>Login</Button>
-      </div>
-    </FormControl>
-    </Box>
+    <PageWrapper title="LOGIN" alertMessage={alertMessage}>
+      <FormControl sx={{ width: "21ch" }}>
+        {alertMessage && (
+          <Alert severity="error">{alertMessage}</Alert>
+        )}
+        <TextField
+          required
+          id="outlined-username-input"
+          label="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <TextField
+          required
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div>
+          <Button variant="outlined" onClick={handleLogin}>Login</Button>
+        </div>
+      </FormControl>
+    </PageWrapper>
   )
 }

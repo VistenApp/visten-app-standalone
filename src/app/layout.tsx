@@ -24,12 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={zen_dots.variable}>
-      <body>
+    <html lang="en" className={zen_dots.variable} style={{ height: "100%" }}>
+      <body style={{ height: "100%" }}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Container sx={{ mt: 5 }}>
+            <Container sx ={{ height: "100%" }}>
               <Navbar/>
               {children}
             </Container>

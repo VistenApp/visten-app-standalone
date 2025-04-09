@@ -12,10 +12,11 @@ export default function Home() {
   }, []);
 
   return (
-    <Box sx={{ textAlign: "center", mt: 30 }}>
-      <Typographie variant="h3" component="h3">
-        WELCOME TO VISTEN (ㆆ _ ㆆ)
-      </Typographie>
+    <Box sx={{ display: "flex", alignItems: "center", height: "100vh" }}>
+      <Box sx={{ textAlign: "center", width: "100%", mt: -35 }}>
+        <Typographie variant="h3" component="h3">
+          WELCOME TO VISTEN (ㆆ _ ㆆ)
+        </Typographie>
         {!isLoggedIn && (
           <div>
             <Typographie variant="h5" component="h5" sx={{ mt: 3 }}>
@@ -26,6 +27,7 @@ export default function Home() {
             </Button>
           </div>
         )}
+      </Box>
     </Box>
   );
 }
