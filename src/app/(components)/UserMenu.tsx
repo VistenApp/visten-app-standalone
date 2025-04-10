@@ -35,7 +35,7 @@ export default function UserMenu() {
   }
 
   return (
-    <div style={{ width: "5ch"}}>
+    <div style={{ width: "5ch" }}>
       {isLoggedIn ? (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Button

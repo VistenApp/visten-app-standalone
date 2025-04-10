@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { get_pokemons } from './service';
+import { get_needed_pokemons } from './service';
 import PageWrapper from '../(components)/PageWrapper';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
@@ -33,7 +33,7 @@ export default function PokeManager() {
   const [alertMessage, setAlertMessage] = React.useState("");
   const [pokemons, setPokemons] = React.useState([]);
   React.useEffect(() => {
-    get_pokemons().then((pokemons) => {
+    get_needed_pokemons().then((pokemons) => {
       setPokemons(pokemons);
     }).catch((error: any) => {
       setAlertMessage(error.message);

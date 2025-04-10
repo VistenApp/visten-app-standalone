@@ -1,8 +1,8 @@
 import { get } from "../service";
 
-export async function get_pokemons() {
+export async function get_needed_pokemons() {
     console.log("Fetching pokemons");
-    const response = await get("/poke-manager");
+    const response = await get("/poke-manager/need");
     if (!response) {
         throw new Error("Internal Server Error");
     }

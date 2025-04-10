@@ -1,5 +1,5 @@
 'use client';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import * as React from 'react';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import HomeIcon from '@mui/icons-material/Home';
@@ -12,27 +12,37 @@ export default function Navbar() {
     <Box sx={{
       display: 'flex',
       alignItems: 'center',
-      mb: 5,
-      mt: 5,
-      justifyContent: 'space-between' 
+      justifyContent: 'space-between',
+      mb: 3,
+      mt: 3,
     }}>
-      <Button href="/">
-        <HomeIcon />
-        Home
+      <Button
+        href="/"
+        disableRipple
+        sx={{
+          '&:hover': { backgroundColor: 'transparent' },
+          '&:active': { backgroundColor: 'transparent' }
+        }}
+      >
+        <Typography variant="h4">
+          VISTEN
+        </Typography>
       </Button>
-      <Button href="/poke-manager">
-        <CatchingPokemonIcon />
-        Poke Manager
-      </Button>
-      <Button href="/show-manager">
-        <TvIcon />
-        Show Manager
-      </Button>
-      <Button href="/film-picker">
-        <VideocamIcon />
-        Film Picker
-      </Button>
-      <UserMenu />
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        <Button href="/poke-manager">
+          <CatchingPokemonIcon />
+          Poke Manager
+        </Button>
+        <Button href="/show-manager">
+          <TvIcon />
+          Show Manager
+        </Button>
+        <Button href="/film-picker">
+          <VideocamIcon />
+          Film Picker
+        </Button>
+        <UserMenu />
+      </Box>
     </Box>
   );
 };

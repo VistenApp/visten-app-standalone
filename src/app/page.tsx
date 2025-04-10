@@ -12,14 +12,14 @@ export default function Home() {
   }, []);
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", height: "100vh" }}>
-      <Box sx={{ textAlign: "center", width: "100%", mt: -35 }}>
-        <Typographie variant="h3" component="h3">
+    <Box sx={{ display: "flex", height: "100vh" }}>
+      <Box sx={{ textAlign: "center", width: "100%", mt: 30 }}>
+        <Typographie variant="h3">
           WELCOME TO VISTEN (ㆆ _ ㆆ)
         </Typographie>
         {!isLoggedIn && (
           <div>
-            <Typographie variant="h5" component="h5" sx={{ mt: 3 }}>
+            <Typographie variant="h5" sx={{ mt: 3 }}>
               This app is for private use only, you can't sign up sorry...
             </Typographie>
             <Button variant="outlined" href="/login" sx={{ mt: 5 }}>

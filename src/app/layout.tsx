@@ -29,9 +29,11 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Container sx ={{ height: "100%" }}>
+            <Container maxWidth="xl" sx={{ height: "100%" }}>
               <Navbar/>
-              {children}
+              <Container sx={{ height: "100%" }}>
+                {children}
+              </Container>
             </Container>
           </ThemeProvider>
         </AppRouterCacheProvider>
