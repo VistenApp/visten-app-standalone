@@ -5,11 +5,11 @@ import { get_needed_pokemons, delete_needed_pokemon, get_extensions } from './se
 import PageWrapper from '../(components)/PageWrapper';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
-import { Button, MenuItem, Rating, Select, SelectChangeEvent } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, SelectChangeEvent } from '@mui/material';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Pokemon, Extension } from './interface';
-import { ReactElement } from 'react';
+import PokemonForm from './(components)/PokemonForm';
 
 function renderRating(rating: number) {
   return <Rating
@@ -47,7 +47,7 @@ export default function PokeManager() {
   const [alertMessage, setAlertMessage] = React.useState("");
   const [pokemons, setPokemons] = React.useState<Pokemon[]>([]);
   const [extension, setExtension] = React.useState("");
-  const [extensions, setExtensions] = React.useState<ReactElement[]>([]);
+  const [extensions, setExtensions] = React.useState<Extension[]>([]);
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', flex: 1 },
@@ -60,9 +60,7 @@ export default function PokeManager() {
 
   React.useEffect(() => {
     get_extensions().then((extensions) => {
-      setExtensions(extensions.map((extension: Extension) => {
-        return <MenuItem value={extension.id}>{extension.name}</MenuItem>
-      }))
+      setExtensions(extensions)
     }).catch((error: any) => {
       setAlertMessage(error.message);
     });
@@ -75,6 +73,10 @@ export default function PokeManager() {
   const handleSelection = (event: SelectChangeEvent) => {
     const extension = event.target.value as string
     setExtension(extension);
+    getPokemons(extension);
+  };
+
+  const getPokemons = (extension: string) => {
     get_needed_pokemons(extension as unknown as number).then((pokemons) => {
       setPokemons(pokemons);
     }).catch((error: any) => {
@@ -84,33 +86,42 @@ export default function PokeManager() {
 
   return (
     <PageWrapper title="POKE MANAGER" alertMessage={alertMessage}>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={extension}
-        label="Extension"
-        onChange={handleSelection}
-        sx={{width: "100%", mb: 3}}
-      >
-        {extensions}
-      </Select>
-      <Paper>
+      <FormControl fullWidth>
+        <InputLabel id="extension-select-label">Extension</InputLabel>
+        <Select
+          labelId="extension-select-label"
+          id="extension-select"
+          value={extension}
+          label="Extension"
+          onChange={handleSelection}
+          sx={{width: "100%", mb: 2}}
+        >
+          {extensions.map((extension: Extension) => (
+            <MenuItem key={extension.id} value={extension.id}>
+              {extension.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
         {extension && (
-          <DataGrid
-            rows={pokemons}
-            columns={columns}
-            sx={{ border: 0 }}
-            disableRowSelectionOnClick
-            initialState={{
-              columns: {
-                columnVisibilityModel: {
-                  id: false,
-                },
-              },
-            }}
-          />
+          <Box>
+            <PokemonForm extension={parseInt(extension)} setAlertMessage={setAlertMessage} getPokemons={getPokemons} />
+            <Paper>
+              <DataGrid
+                rows={pokemons}
+                columns={columns}
+                disableRowSelectionOnClick
+                initialState={{
+                  columns: {
+                    columnVisibilityModel: {
+                      id: false,
+                    },
+                  },
+                }}
+              />
+            </Paper>
+          </Box>
         )}
-      </Paper>
     </PageWrapper>
   )
 }

@@ -15,7 +15,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ title, alertMessage, children
         {title}
       </Typography>
       {alertMessage && (
-        <Alert severity="error">{alertMessage}</Alert>
+        <Alert severity="error" sx={{ mb: 2 }}>{alertMessage}</Alert>
       )}
       {children}
     </Box>
