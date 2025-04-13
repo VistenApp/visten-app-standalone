@@ -1,27 +1,21 @@
 'use client';
 
 import * as React from 'react';
-import { get_needed_pokemons } from './service';
+import { get_needed_pokemons, delete_needed_pokemon, get_extensions } from './service';
 import PageWrapper from '../(components)/PageWrapper';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
-import { Rating } from '@mui/material';
+import { Button, MenuItem, Rating, Select, SelectChangeEvent } from '@mui/material';
 import DiamondIcon from '@mui/icons-material/Diamond';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Pokemon, Extension } from './interface';
+import { ReactElement } from 'react';
 
-const columns: GridColDef[] = [
-  // { field: 'extension', headerName: 'EXTENSION', flex: 1 },
-  { field: 'id', headerName: 'ID', flex: 1 },
-  { field: 'name', headerName: 'NAME', flex: 1},
-  { field: 'rarity', headerName: 'RARITY', renderCell: renderRating, flex: 1},
-  { field: 'pack_price', headerName: 'PACK PRICE', flex: 1},
-  { field: 'exchange_price', headerName: 'EXCHANGE PRICE', flex: 1},
-];
-
-function renderRating(params: any) {
+function renderRating(rating: number) {
   return <Rating
     readOnly
-    value={params.value}
-    max={4} 
+    value={rating}
+    max={4}
     slotProps={{
       icon: {
         component: DiamondIcon,
@@ -29,32 +23,93 @@ function renderRating(params: any) {
     }}/>;
 }
 
+function renderDelete(params: any, setAlertMessage: (message: string) => void, removePokemon: (id: number) => void) {
+
+  function handleClick(id: number) {
+    delete_needed_pokemon(id).then(() => {
+      removePokemon(id);
+    }).catch((error: any) => {
+      setAlertMessage(error.message);
+    });
+    console.log(id);
+  }
+
+  return (
+    <Button
+      onClick={() => handleClick(params.id)}
+    >
+      <DeleteForeverIcon />
+    </Button>
+  );
+}
+
 export default function PokeManager() {
   const [alertMessage, setAlertMessage] = React.useState("");
-  const [pokemons, setPokemons] = React.useState([]);
+  const [pokemons, setPokemons] = React.useState<Pokemon[]>([]);
+  const [extension, setExtension] = React.useState("");
+  const [extensions, setExtensions] = React.useState<ReactElement[]>([]);
+
+  const columns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', flex: 1 },
+    { field: 'name', headerName: 'NAME', flex: 1},
+    { field: 'rarity', headerName: 'RARITY', renderCell: (params) => renderRating(params.value), flex: 1},
+    { field: 'pack_price', headerName: 'PACK PRICE', flex: 1},
+    { field: 'exchange_price', headerName: 'EXCHANGE PRICE', flex: 1},
+    { field: 'delete', headerName: 'DELETE', renderCell: (params) => renderDelete(params, setAlertMessage, removePokemon)},
+  ];
+
   React.useEffect(() => {
-    get_needed_pokemons().then((pokemons) => {
-      setPokemons(pokemons);
+    get_extensions().then((extensions) => {
+      setExtensions(extensions.map((extension: Extension) => {
+        return <MenuItem value={extension.id}>{extension.name}</MenuItem>
+      }))
     }).catch((error: any) => {
       setAlertMessage(error.message);
     });
   }, []);
+
+  const removePokemon = (id: number) => {
+    setPokemons(pokemons.filter(pokemon => pokemon.id !== id));
+  };
+
+  const handleSelection = (event: SelectChangeEvent) => {
+    const extension = event.target.value as string
+    setExtension(extension);
+    get_needed_pokemons(extension as unknown as number).then((pokemons) => {
+      setPokemons(pokemons);
+    }).catch((error: any) => {
+      setAlertMessage(error.message);
+    });
+  };
+
   return (
     <PageWrapper title="POKE MANAGER" alertMessage={alertMessage}>
-      <Paper sx={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={pokemons}
-          columns={columns}
-          checkboxSelection
-          sx={{ border: 0 }}
-          initialState={{
-            columns: {
-              columnVisibilityModel: {
-                id: false,
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={extension}
+        label="Extension"
+        onChange={handleSelection}
+        sx={{width: "100%", mb: 3}}
+      >
+        {extensions}
+      </Select>
+      <Paper>
+        {extension && (
+          <DataGrid
+            rows={pokemons}
+            columns={columns}
+            sx={{ border: 0 }}
+            disableRowSelectionOnClick
+            initialState={{
+              columns: {
+                columnVisibilityModel: {
+                  id: false,
+                },
               },
-            },
-          }}
-        />
+            }}
+          />
+        )}
       </Paper>
     </PageWrapper>
   )
