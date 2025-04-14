@@ -4,6 +4,7 @@ export interface Pokemon {
     rarity: number;
     pack_price: number;
     exchange_price: number;
+    action?: string;
 }
 
 export interface Extension {

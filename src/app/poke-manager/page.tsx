@@ -10,6 +10,7 @@ import DiamondIcon from '@mui/icons-material/Diamond';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Pokemon, Extension } from './interface';
 import PokemonForm from './(components)/PokemonForm';
+import CalculationForm from './(components)/CalculationForm';
 
 function renderRating(rating: number) {
   return <Rating
@@ -51,11 +52,12 @@ export default function PokeManager() {
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', flex: 1 },
-    { field: 'name', headerName: 'NAME', flex: 1},
-    { field: 'rarity', headerName: 'RARITY', renderCell: (params) => renderRating(params.value), flex: 1},
-    { field: 'pack_price', headerName: 'PACK PRICE', flex: 1},
-    { field: 'exchange_price', headerName: 'EXCHANGE PRICE', flex: 1},
-    { field: 'delete', headerName: 'DELETE', renderCell: (params) => renderDelete(params, setAlertMessage, removePokemon)},
+    { field: 'name', headerName: 'NAME', flex: 1 },
+    { field: 'rarity', headerName: 'RARITY', renderCell: (params) => renderRating(params.value), flex: 1 },
+    { field: 'pack_price', headerName: 'PACK PRICE', flex: 1 },
+    { field: 'exchange_price', headerName: 'EXCHANGE PRICE', flex: 1 },
+    { field: 'action', headerName: 'ACTION', minWidth: 125 },
+    { field: 'delete', headerName: 'DELETE', renderCell: (params) => renderDelete(params, setAlertMessage, removePokemon), resizable: false },
   ];
 
   React.useEffect(() => {
@@ -106,6 +108,7 @@ export default function PokeManager() {
         {extension && (
           <Box>
             <PokemonForm extension={parseInt(extension)} setAlertMessage={setAlertMessage} getPokemons={getPokemons} />
+            <CalculationForm extension={parseInt(extension)} setAlertMessage={setAlertMessage} setPokemons={setPokemons} />
             <Paper>
               <DataGrid
                 rows={pokemons}

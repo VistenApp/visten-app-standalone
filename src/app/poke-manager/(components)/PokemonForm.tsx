@@ -61,7 +61,6 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
         >
           <Typography component="legend">Rating</Typography>
           <Rating
-            name="read-only"
             value={rating}
             onChange={(_, newRating) => {
               setRating(newRating);

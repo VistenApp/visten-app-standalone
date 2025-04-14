@@ -56,3 +56,16 @@ export async function add_needed_pokemon(extension: number, name: string, rarity
     }
     return data;
 }
+
+export async function calculate(extension: number, packPoints: number) {
+    const response = await get("/poke-manager/calculate" + "?extension=" + extension + "&pack_points=" + packPoints);
+    if (!response) {
+        throw new Error("Internal Server Error");
+    }
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
