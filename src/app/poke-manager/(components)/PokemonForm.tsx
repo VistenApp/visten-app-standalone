@@ -20,7 +20,7 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
       setAlertMessage("Name is required");
       return;
     }
-    if (rating === null) {
+    if (rating === null || rating === 0) {
       setAlertMessage("Rating is required");
       return;
     }
