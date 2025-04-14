@@ -33,14 +33,14 @@ export default function Navbar() {
           <CatchingPokemonIcon />
           Poke Manager
         </Button>
-        <Button href="/show-manager">
+        {/* <Button href="/show-tracker">
           <TvIcon />
-          Show Manager
+          Show Tracker
         </Button>
         <Button href="/film-picker">
           <VideocamIcon />
           Film Picker
-        </Button>
+        </Button> */}
         <UserMenu />
       </Box>
     </Box>
