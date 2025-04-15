@@ -25,7 +25,7 @@ export default function Profile() {
 
 
   return (
-    <PageWrapper title="PROFILE" alertMessage={alertMessage}>
+    <PageWrapper title="PROFILE">
       <FormControl sx={{ width: "21ch" }}>
         {alertMessage && (
           <Alert severity={alertSeverity} sx={{mb: 1}}>{alertMessage}</Alert>

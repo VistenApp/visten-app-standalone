@@ -29,7 +29,7 @@ export default function Login() {
   }
 
   return (
-    <PageWrapper title="LOGIN" alertMessage={alertMessage}>
+    <PageWrapper title="LOGIN">
       <FormControl sx={{ width: "21ch" }}>
         {alertMessage && (
           <Alert severity="error">{alertMessage}</Alert>
