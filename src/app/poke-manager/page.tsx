@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { get_needed_pokemons, delete_needed_pokemon, get_extensions } from './service';
 import PageWrapper from '../(components)/PageWrapper';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, SelectChangeEvent } from '@mui/material';
 import DiamondIcon from '@mui/icons-material/Diamond';
@@ -24,12 +24,12 @@ function renderRating(rating: number) {
     }}/>;
 }
 
-function renderDelete(params: any, setAlertMessage: (message: string) => void, removePokemon: (id: number) => void) {
+function renderDelete(params: GridRenderCellParams, setAlertMessage: (message: string) => void, removePokemon: (id: number) => void) {
 
   function handleClick(id: number) {
     delete_needed_pokemon(id).then(() => {
       removePokemon(id);
-    }).catch((error: any) => {
+    }).catch((error: Error) => {
       setAlertMessage(error.message);
     });
     console.log(id);
@@ -37,7 +37,7 @@ function renderDelete(params: any, setAlertMessage: (message: string) => void, r
 
   return (
     <Button
-      onClick={() => handleClick(params.id)}
+      onClick={() => handleClick(params.id as number)}
     >
       <DeleteForeverIcon />
     </Button>
@@ -63,7 +63,7 @@ export default function PokeManager() {
   React.useEffect(() => {
     get_extensions().then((extensions) => {
       setExtensions(extensions)
-    }).catch((error: any) => {
+    }).catch((error: Error) => {
       setAlertMessage(error.message);
     });
   }, []);
@@ -81,7 +81,7 @@ export default function PokeManager() {
   const getPokemons = (extension: string) => {
     get_needed_pokemons(extension as unknown as number).then((pokemons) => {
       setPokemons(pokemons);
-    }).catch((error: any) => {
+    }).catch((error: Error) => {
       setAlertMessage(error.message);
     });
   };

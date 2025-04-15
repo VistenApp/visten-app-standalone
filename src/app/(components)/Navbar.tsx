@@ -2,10 +2,10 @@
 import { Box, Button, Typography } from '@mui/material';
 import * as React from 'react';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import HomeIcon from '@mui/icons-material/Home';
-import TvIcon from '@mui/icons-material/Tv';
+// import HomeIcon from '@mui/icons-material/Home';
+// import TvIcon from '@mui/icons-material/Tv';
 import UserMenu from './UserMenu';
-import VideocamIcon from '@mui/icons-material/Videocam';
+// import VideocamIcon from '@mui/icons-material/Videocam';
 
 export default function Navbar() {
   return (

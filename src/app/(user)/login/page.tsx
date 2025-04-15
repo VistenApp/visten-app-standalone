@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Alert, Box, Typography, Button, TextField, FormControl } from '@mui/material';
+import { Alert, Button, TextField, FormControl } from '@mui/material';
 import { login } from '../service';
 import PageWrapper from '@/app/(components)/PageWrapper';
 
@@ -23,7 +23,7 @@ export default function Login() {
     }
     login(username, password).then(() => {
       window.location.href = "/";
-    }).catch((error: any) => {
+    }).catch((error: Error) => {
       setAlertMessage(error.message);
     });
   }

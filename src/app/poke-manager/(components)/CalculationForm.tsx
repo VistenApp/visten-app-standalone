@@ -22,7 +22,7 @@ const [totalPackCost, setTotalPackCost] = React.useState<string>("0");
       return;
     }
     calculate(extension, parseInt(packPoints)).then((pokemons) => {
-        let exchanging_pokemons = pokemons["exchange"]
+        const exchanging_pokemons = pokemons["exchange"]
         let totalExchangeCost = 0
         for (let i = 0; i < exchanging_pokemons.length; i++) {
           exchanging_pokemons[i]["action"] = "EXCHANGE"
@@ -30,7 +30,7 @@ const [totalPackCost, setTotalPackCost] = React.useState<string>("0");
         }
         setTotalExchangeCost(totalExchangeCost.toString())
 
-        let buying_pokemons = pokemons["buy"]
+        const buying_pokemons = pokemons["buy"]
         let totalPackCost = 0
         for (let i = 0; i < buying_pokemons.length; i++) {
           buying_pokemons[i]["action"] = "BUY"
@@ -38,10 +38,9 @@ const [totalPackCost, setTotalPackCost] = React.useState<string>("0");
         }
         setTotalPackCost(totalPackCost.toString())
 
-        let all_pokemons = exchanging_pokemons.concat(buying_pokemons)
-        setPokemons(all_pokemons);
+        setPokemons(exchanging_pokemons.concat(buying_pokemons));
     }
-    ).catch((error: any) => {
+    ).catch((error: Error) => {
       setAlertMessage(error.message);
     });
   }

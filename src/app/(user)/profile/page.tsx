@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Alert, Box, Typography, Button, TextField, FormControl } from '@mui/material';
+import { Alert, Button, TextField, FormControl } from '@mui/material';
 import { get_profile, change_password } from '../service';
 import PageWrapper from '@/app/(components)/PageWrapper';
 

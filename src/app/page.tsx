@@ -20,7 +20,7 @@ export default function Home() {
         {!isLoggedIn && (
           <div>
             <Typographie variant="h5" sx={{ mt: 3 }}>
-              This app is for private use only, you can't sign up sorry...
+              This app is for private use only, you can&apos;t sign up sorry...
             </Typographie>
             <Button variant="outlined" href="/login" sx={{ mt: 5 }}>
               Login

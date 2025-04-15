@@ -28,7 +28,7 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
     add_needed_pokemon(extension, name, rating).then(() => {
       getPokemons(extension.toString());
     }
-    ).catch((error: any) => {
+    ).catch((error: Error) => {
       setAlertMessage(error.message);
     });
   }
