@@ -35,7 +35,7 @@ export default function UserMenu() {
   }
 
   return (
-    <div style={{ width: "5ch" }}>
+    <div>
       {isLoggedIn ? (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Button
@@ -70,9 +70,14 @@ export default function UserMenu() {
           </Menu>
         </Box>
       ) : (
-        <Button variant="text" href="/login">
-          Login
-        </Button>
+        <div>
+          <Button variant="text" href="/login">
+            Log In
+          </Button>
+          <Button variant="text" href="/signup">
+            Sign Up
+          </Button>
+        </div>
       )}
     </div>
   );

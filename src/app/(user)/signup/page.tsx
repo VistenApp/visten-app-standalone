@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Alert, Button, TextField, FormControl, Link } from '@mui/material';
-import { login } from '../service';
+import { signup } from '../service';
 import PageWrapper from '@/app/(components)/PageWrapper';
 
 export default function Login() {
@@ -16,28 +16,33 @@ export default function Login() {
   const [usernameIsValid, setUsernameIsValid] = React.useState(true);
   const [password, setPassword] = React.useState("");
   const [passwordIsValid, setPasswordIsValid] = React.useState(true);
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [confirmPasswordIsValid, setConfirmPasswordIsValid] = React.useState(true);
   const [alertMessage, setAlertMessage] = React.useState("");
 
   function handleLogin() {
-      let isValid = true;
+    let isValid = true;
 
-      setUsernameIsValid(username != "");
-      isValid = isValid ? username != "" : isValid;
+    setUsernameIsValid(username != "");
+    isValid = isValid ? username != "" : isValid;
 
-      setPasswordIsValid(password != "");
-      isValid = isValid ? password != "" : isValid;
+    setPasswordIsValid(password != "");
+    isValid = isValid ? password != "" : isValid;
 
-      if (isValid) {
-        login(username, password).then(() => {
-          window.location.href = "/";
-        }).catch((error: Error) => {
-          setAlertMessage(error.message);
-        });
-      }
+    setConfirmPasswordIsValid(password == confirmPassword);
+    isValid = isValid ? password == confirmPassword : isValid;
+
+    if (isValid) {
+      signup(username, password).then(() => {
+        window.location.href = "/";
+      }).catch((error: Error) => {
+        setAlertMessage(error.message);
+      });
+    }
   }
 
   return (
-    <PageWrapper title="LOG IN">
+    <PageWrapper title="SIGN UP">
       <FormControl sx={{ width: "21ch" }}>
         {alertMessage && (
           <Alert severity="error">{alertMessage}</Alert>
@@ -62,10 +67,20 @@ export default function Login() {
             error={!passwordIsValid}
             helperText={!passwordIsValid ? "Password is required" : ""}
         />
+        <TextField
+            required
+            id="outlined-confirm-password-input"
+            label="Confirm Password"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            error={!confirmPasswordIsValid}
+            helperText={!confirmPasswordIsValid ? "Passwords do not match" : ""}
+        />
         <div>
-          <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>Login</Button>
+          <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>Sign Up</Button>
         </div>
-        <Link sx={{ mt: 1 }} href="/signup">Sign up</Link>
+        <Link sx={{ mt: 1 }} href="/login">Log In</Link>
       </FormControl>
     </PageWrapper>
   )

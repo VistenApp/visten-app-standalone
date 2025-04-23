@@ -3,6 +3,7 @@ import React from 'react';
 import Typographie from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { Link } from '@mui/material';
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
@@ -20,11 +21,20 @@ export default function Home() {
         {!isLoggedIn && (
           <div>
             <Typographie variant="h5" sx={{ mt: 3 }}>
-              This app is for private use only, you can&apos;t sign up sorry...
+              This is an app where I put random features I thought of...
             </Typographie>
-            <Button variant="outlined" href="/login" sx={{ mt: 5 }}>
-              Login
-            </Button>
+            <Box sx={{
+              mt: 5,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 2
+            }}>
+              <Button variant="outlined" href="/login">
+                Login
+              </Button>
+              <Link href="/signup">Sign up</Link>
+            </Box>
           </div>
         )}
       </Box>
