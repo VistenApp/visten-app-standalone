@@ -51,13 +51,13 @@ export default function PokeManager() {
   const [extensions, setExtensions] = React.useState<Extension[]>([]);
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', flex: 1 },
-    { field: 'name', headerName: 'NAME', flex: 1 },
-    { field: 'rarity', headerName: 'RARITY', renderCell: (params) => renderRating(params.value), flex: 1 },
-    { field: 'pack_price', headerName: 'PACK PRICE', flex: 1 },
-    { field: 'exchange_price', headerName: 'EXCHANGE PRICE', flex: 1 },
-    { field: 'action', headerName: 'ACTION', minWidth: 125 },
-    { field: 'delete', headerName: 'DELETE', renderCell: (params) => renderDelete(params, setAlertMessage, removePokemon), resizable: false },
+    { field: 'id', headerName: 'ID'},
+    { field: 'name', headerName: 'NAME', minWidth: 150, flex: 1 },
+    { field: 'rarity', headerName: 'RARITY', renderCell: (params) => renderRating(params.value), minWidth: 150, flex: 1 },
+    { field: 'pack_price', headerName: 'PACK PRICE', minWidth: 200, flex: 1 },
+    { field: 'exchange_price', headerName: 'EXCHANGE PRICE', minWidth: 250, flex: 1 },
+    { field: 'action', headerName: 'ACTION', minWidth: 150 },
+    { field: 'delete', headerName: 'DELETE', renderCell: (params) => renderDelete(params, setAlertMessage, removePokemon), minWidth: 150 },
   ];
 
   React.useEffect(() => {

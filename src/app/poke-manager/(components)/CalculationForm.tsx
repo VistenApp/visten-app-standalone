@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { Box } from '@mui/material';
+import { Stack, useMediaQuery } from '@mui/material';
 import { calculate } from '../service';
 import { Pokemon } from '../interface';
+import theme from '@/app/theme';
 
 interface FormDialogProps {
   extension: number;
@@ -13,8 +14,9 @@ interface FormDialogProps {
 
 export default function PokemonForm({ extension, setAlertMessage, setPokemons }: FormDialogProps) {
   const [packPoints, setPackPoints] = React.useState<string>("");
-const [totalExchangeCost, setTotalExchangeCost] = React.useState<string>("0");
-const [totalPackCost, setTotalPackCost] = React.useState<string>("0");
+  const [totalExchangeCost, setTotalExchangeCost] = React.useState<string>("0");
+  const [totalPackCost, setTotalPackCost] = React.useState<string>("0");
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   function handleClick() {
     if (packPoints === "") {
@@ -47,42 +49,39 @@ const [totalPackCost, setTotalPackCost] = React.useState<string>("0");
 
 
   return (
-    <React.Fragment>
-      <Box
-        sx={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          width: '100%',
-          mb: 2,
-          gap: 5,
-        }}
-      >
-        <TextField
-          id="packPoints"
-          label="Pack Points"
-          type="number"
-          value={packPoints}
-          onChange={(e) => setPackPoints(e.target.value)}
-          sx={{ width: '15%' }}
-        />
-        <TextField
-          id="packCost"
-          label="Pack Cost"
-          disabled
-          value={totalPackCost}
-          sx={{ width: '15%' }}
-        />
-        <TextField
-          id="exchangeCost"
-          label="Exchange Cost"
-          disabled
-          value={totalExchangeCost}
-          sx={{ width: '15%' }}
-        />
-        <Button variant="outlined" onClick={handleClick}>
-          CALCULATE
-        </Button>
-      </Box>
-    </React.Fragment>
+    <Stack
+      direction={{ xs: 'column', sm: 'row' }}
+      spacing={{ xs: 2, sm: 5 }}
+      sx={{
+        alignItems: 'center',
+        mb: 2,
+      }}
+    >
+      <TextField
+        id="packPoints"
+        label="Pack Points"
+        type="number"
+        value={packPoints}
+        onChange={(e) => setPackPoints(e.target.value)}
+        sx={isMobile ? {} : { width: '11em' }}
+      />
+      <TextField
+        id="packCost"
+        label="Pack Cost"
+        disabled
+        value={totalPackCost}
+        sx={isMobile ? {} : { width: '11em' }}
+      />
+      <TextField
+        id="exchangeCost"
+        label="Exchange Cost"
+        disabled
+        value={totalExchangeCost}
+        sx={isMobile ? {} : { width: '11em' }}
+      />
+      <Button variant="outlined" onClick={handleClick}>
+        CALCULATE
+      </Button>
+    </Stack>
   );
 }

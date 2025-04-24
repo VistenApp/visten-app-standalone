@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { Box, Rating, Typography } from '@mui/material';
+import { Box, Rating, Stack, Typography } from '@mui/material';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import { add_needed_pokemon } from '../service';
 
@@ -35,49 +35,46 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
 
 
   return (
-    <React.Fragment>
+    <Stack
+      direction={{ xs: 'column', sm: 'row' }}
+      spacing={{ xs: 2, sm: 5 }}
+      sx={{
+        alignItems: 'center',
+        mb: 2,
+      }}
+    >
+      <TextField
+        id="name"
+        label="Name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
       <Box
         sx={{
           display: 'inline-flex',
           alignItems: 'center',
-          width: '100%',
-          gap: 5,
-          mb: 2,
+          gap: 4,
         }}
       >
-        <TextField
-          id="name"
-          label="Name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Box
-          sx={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 1,
+        <Typography component="legend">Rarity</Typography>
+        <Rating
+          value={rating}
+          onChange={(_, newRating) => {
+            setRating(newRating);
           }}
-        >
-          <Typography component="legend">Rating</Typography>
-          <Rating
-            value={rating}
-            onChange={(_, newRating) => {
-              setRating(newRating);
-            }}
-            size="large"
-            max={4}
-            slotProps={{
-              icon: {
-                component: DiamondIcon,
-              }
-            }}
-          />
-        </Box>
-        <Button variant="outlined" onClick={handleClick}>
-          ADD POKEMON
-        </Button>
+          sx={{ scale: 1.4 }}
+          max={4}
+          slotProps={{
+            icon: {
+              component: DiamondIcon,
+            }
+          }}
+        />
       </Box>
-    </React.Fragment>
+      <Button variant="outlined" onClick={handleClick}>
+        ADD POKEMON
+      </Button>
+    </Stack>
   );
 }
