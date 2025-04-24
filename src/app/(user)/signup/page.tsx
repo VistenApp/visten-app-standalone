@@ -80,7 +80,7 @@ export default function Login() {
         <div>
           <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>Sign Up</Button>
         </div>
-        <Link sx={{ mt: 1 }} href="/login">Log In</Link>
+        <Link sx={{ mt: 1 }} href="/login">Log in</Link>
       </FormControl>
     </PageWrapper>
   )

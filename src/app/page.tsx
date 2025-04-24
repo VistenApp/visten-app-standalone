@@ -31,7 +31,7 @@ export default function Home() {
               gap: 2
             }}>
               <Button variant="outlined" href="/login">
-                Login
+                Log In
               </Button>
               <Link href="/signup">Sign up</Link>
             </Box>

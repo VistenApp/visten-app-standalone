@@ -12,7 +12,7 @@ interface FormDialogProps {
 }
 
 export default function PokemonForm({ extension, setAlertMessage, getPokemons }: FormDialogProps) {
-  const [rating, setRating] = React.useState<number | null>(0);
+  const [rarity, setRarity] = React.useState<number | null>(0);
   const [name, setName] = React.useState<string>("");
 
   function handleClick() {
@@ -20,12 +20,12 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
       setAlertMessage("Name is required");
       return;
     }
-    if (rating === null || rating === 0) {
-      setAlertMessage("Rating is required");
+    if (rarity === null || rarity === 0) {
+      setAlertMessage("Rarity is required");
       return;
     }
 
-    add_needed_pokemon(extension, name, rating).then(() => {
+    add_needed_pokemon(extension, name, rarity).then(() => {
       getPokemons(extension.toString());
     }
     ).catch((error: Error) => {
@@ -59,9 +59,9 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
       >
         <Typography component="legend">Rarity</Typography>
         <Rating
-          value={rating}
-          onChange={(_, newRating) => {
-            setRating(newRating);
+          value={rarity}
+          onChange={(_, newRarity) => {
+            setRarity(newRarity);
           }}
           sx={{ scale: 1.4 }}
           max={4}
