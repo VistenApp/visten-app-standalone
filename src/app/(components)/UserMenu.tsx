@@ -74,9 +74,6 @@ export default function UserMenu() {
           <Button variant="text" href="/login">
             Log In
           </Button>
-          <Button variant="text" href="/signup">
-            Sign Up
-          </Button>
         </div>
       )}
     </div>
