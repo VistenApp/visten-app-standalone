@@ -69,7 +69,7 @@ export default function Navbar() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuItem href='/poke-manager'>
+            <MenuItem onClick={() => window.location.href = "/poke-manager"}>
               <CatchingPokemonIcon />
               Poke Manager
             </MenuItem>
