@@ -16,13 +16,13 @@ export default function Home() {
     <Box sx={{ display: "flex", height: "100vh" }}>
       <Box sx={{ textAlign: "center", width: "100%", mt: 30 }}>
         <Typographie variant="h3">
-          WELCOME TO VISTEN (ㆆ _ ㆆ)
+          WELCOME TO VISTEN <span style={{ whiteSpace: "nowrap" }}>(ㆆ _ ㆆ)</span>
+        </Typographie>
+        <Typographie variant="h5" sx={{ mt: 3 }}>
+          This is an app where I put random functionalities...
         </Typographie>
         {!isLoggedIn && (
           <div>
-            <Typographie variant="h5" sx={{ mt: 3 }}>
-              This is an app where I put random features I thought of...
-            </Typographie>
             <Box sx={{
               mt: 5,
               display: "flex",
