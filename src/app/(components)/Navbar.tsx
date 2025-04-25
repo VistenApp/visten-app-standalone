@@ -5,9 +5,8 @@ import UserMenu from './UserMenu';
 import theme from '../theme';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-// import HomeIcon from '@mui/icons-material/Home';
+import VideocamIcon from '@mui/icons-material/Videocam';
 // import TvIcon from '@mui/icons-material/Tv';
-// import VideocamIcon from '@mui/icons-material/Videocam';
 
 export default function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -73,6 +72,10 @@ export default function Navbar() {
               <CatchingPokemonIcon />
               Poke Manager
             </MenuItem>
+            <MenuItem onClick={() => window.location.href = "/film-picker"}>
+              <VideocamIcon />
+              Film Picker
+            </MenuItem>
           </Menu>
           <UserMenu />
         </Box>
@@ -82,13 +85,13 @@ export default function Navbar() {
             <CatchingPokemonIcon />
             Poke Manager
           </Button>
-          {/* <Button href="/show-tracker">
-            <TvIcon />
-            Show Tracker
-          </Button>
           <Button href="/film-picker">
             <VideocamIcon />
             Film Picker
+          </Button>
+          {/* <Button href="/show-tracker">
+            <TvIcon />
+            Show Tracker
           </Button> */}
           <UserMenu />
         </Box>
