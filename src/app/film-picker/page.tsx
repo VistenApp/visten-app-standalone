@@ -5,15 +5,28 @@ import StarIcon from '@mui/icons-material/Star';
 
 import PageWrapper from "../(components)/PageWrapper";
 import { get_random_film } from "./service";
+import { Member } from "./interface";
 
 export default function FilmPicker() {
   const [alertMessage, setAlertMessage] = React.useState("");
   const [film, setFilm] = React.useState<any>(null);
+  const [directors, SetDirectors] = React.useState<String[]>([]);
+  const [writers, SetWriters] = React.useState<String[]>([]);
 
   function get_film() {
     setAlertMessage("");
     get_random_film().then((data) => {
         setFilm(data);
+
+        const directors = data.credits.crew
+            .filter((member: any) => member.job === "Director")
+            .map((member: any) => member.name);
+        SetDirectors(directors);
+
+        const writers = data.credits.crew
+            .filter((member: Member) => member.job === "Screenplay" ||  member.job === "Writer")
+            .map((member: Member) => member.name);
+        SetWriters(writers);
     }).catch((error) => {
         setAlertMessage(error.message);
     });
@@ -47,7 +60,7 @@ export default function FilmPicker() {
                             <span>{formatRuntime(film.runtime)}</span>
                         </Box>
                     </Box>
-                    <Stack direction="column" spacing={1} sx={{ flexGrow: 1, mt:3, textAlign: "left", justifyContent: "space-between", alignItems: "flex-start" }}>
+                    <Stack direction="column" spacing={1} sx={{ mt:3, textAlign: "left" }}>
                         <Box sx={{alignItems: "center", display: "inline-flex"}}>
                             <StarIcon sx={{color: "#faaf00"}}/>
                             <Typography>{film.vote_average.toFixed(1)}/10</Typography>
@@ -57,26 +70,24 @@ export default function FilmPicker() {
                             direction={{ xs: 'column', sm: 'row' }}
                             spacing={{ xs: 1, sm: 3 }}
                         >
-                            <div>
-                                <Typography variant="subtitle1">Director(s)</Typography>
-                                <p  style={{ fontSize: "0.9em" }}>
-                                &emsp;
-                                {film.credits.crew
-                                    .filter((member: any) => member.job === "Director")
-                                    .map((member: any) => member.name)
-                                    .join(", ")}
-                                </p>
-                            </div>
-                            <div>
-                                <Typography variant="subtitle1">Writer(s)</Typography>
-                                <p  style={{ fontSize: "0.9em" }}>
-                                &emsp;
-                                {film.credits.crew
-                                    .filter((member: any) => member.job === "Screenplay")
-                                    .map((member: any) => member.name)
-                                    .join(", ")}
-                                </p>
-                            </div>
+                            { directors &&
+                                <div>
+                                    <Typography variant="subtitle1">Director{directors.length > 1 && "s"}</Typography>
+                                    <p  style={{ fontSize: "0.9em" }}>
+                                    &emsp;
+                                    {directors.join(", ")}
+                                    </p>
+                                </div>
+                            }
+                            { writers &&
+                                <div>
+                                    <Typography variant="subtitle1">Writer{writers.length > 1 && "s"}</Typography>
+                                    <p  style={{ fontSize: "0.9em" }}>
+                                    &emsp;
+                                    {writers.join(", ")}
+                                    </p>
+                                </div>
+                            }
                         </Stack>
                             <div>
                                 <Typography variant="subtitle1">Actors</Typography>
@@ -88,7 +99,7 @@ export default function FilmPicker() {
                                     .join(", ")}
                                 </p>                                
                             </div>
-                        <div>
+                        <div style={{marginBottom: "20px"}}>
                             <Typography variant="subtitle1">Overview</Typography>
                             <Typography sx={{ 
                                 textAlign: "justify", 
@@ -99,11 +110,9 @@ export default function FilmPicker() {
                                 textOverflow: "ellipsis",
                                 WebkitLineClamp: 4, 
                             }} >{film.overview}</Typography>
-                        </div>
-                        <div style={{marginBottom: "20px"}}>
-                            <Grid container spacing={2}>
+                            <Grid container spacing={2} sx={{mt:2}}>
                                 {film.genres.map((genre: { id: number, name: string }) => 
-                                    <Grid>
+                                    <Grid key={ genre.id }>
                                         <span style={{
                                             padding: 5,
                                             borderWidth: "1px",
