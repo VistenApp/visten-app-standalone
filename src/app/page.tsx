@@ -4,6 +4,7 @@ import Typographie from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Link } from '@mui/material';
+import { TimeTable } from './(components)/TimeTable';
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
@@ -13,8 +14,9 @@ export default function Home() {
   }, []);
 
   return (
-    <Box sx={{ display: "flex", height: "100vh" }}>
-      <Box sx={{ textAlign: "center", width: "100%", mt: 30 }}>
+    <Box>
+      <TimeTable></TimeTable>
+      <Box sx={{ textAlign: "center", width: "100%" }}>
         <Typographie variant="h3">
           WELCOME TO VISTEN <span style={{ whiteSpace: "nowrap" }}>(ㆆ _ ㆆ)</span>
         </Typographie>
@@ -31,7 +33,7 @@ export default function Home() {
               gap: 2
             }}>
               <Button variant="outlined" href="/login">
-                Login
+                Log In
               </Button>
               <Link href="/signup">Sign up</Link>
             </Box>
