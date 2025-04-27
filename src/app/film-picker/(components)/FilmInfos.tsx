@@ -29,7 +29,7 @@ export default function FilmInfos({ film, directors, writers }: FilmInfosProps) 
                         <Typography variant="h5">
                             {film.title}
                         </Typography>
-                        <Box sx={{ fontSize: "0.9em" }}>
+                        <Box>
                             <span>{formatDate(film.release_date)}</span>
                             {" • "}
                             <span>{formatRuntime(film.runtime)}</span>
@@ -41,15 +41,15 @@ export default function FilmInfos({ film, directors, writers }: FilmInfosProps) 
                         </Box>
                     </Box>
                     <Stack direction="column" spacing={1} sx={{ textAlign: "left" }}>
-                        <p style={{ fontSize: "0.9em" }}>
+                        <p>
                             <span style={{ fontWeight: "bold" }}>Director{directors.length > 1 && "s"}</span>
                             &emsp; {directors.join(", ")}
                         </p>
-                        <p style={{ fontSize: "0.9em" }}>
+                        <p>
                             <span style={{ fontWeight: "bold" }}>Writer{writers.length > 1 && "s"}</span>
                             &emsp;{writers.join(", ")}
                         </p>
-                        <p style={{ fontSize: "0.9em" }}>
+                        <p>
                             <span style={{ fontWeight: "bold" }}>Cast</span>
                             &emsp;
                             {film.credits.cast
@@ -61,7 +61,11 @@ export default function FilmInfos({ film, directors, writers }: FilmInfosProps) 
                             <Typography variant="subtitle1">Overview</Typography>
                             <Typography sx={{
                                 textAlign: "justify",
-                                fontSize: "0.9em",
+                                display: "-webkit-box",
+                                WebkitBoxOrient: "vertical",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                WebkitLineClamp: 8,
                             }} >{film.overview}</Typography>
                         </div>
                         <Grid container spacing={1}>
@@ -73,7 +77,7 @@ export default function FilmInfos({ film, directors, writers }: FilmInfosProps) 
                                         borderStyle: "solid",
                                         borderRadius: 25,
                                         whiteSpace: "nowrap",
-                                        fontSize: "0.75em",
+                                        fontSize: "0.8em",
                                     }}>
                                         {genre.name}
                                     </span>

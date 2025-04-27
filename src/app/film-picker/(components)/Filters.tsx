@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import GenreSelect from './GenreSelect';
+import { Box, Rating, Typography } from '@mui/material';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -21,6 +22,7 @@ interface FiltersProps {
 export default function Filters({ setFilters }: FiltersProps) {
     const [open, setOpen] = React.useState(false);
     const [genres, setGenres] = React.useState<number[]>([]);
+    const [rating, setRating] = React.useState<number | null>(0);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -29,6 +31,9 @@ export default function Filters({ setFilters }: FiltersProps) {
         let filters = "?";
         if (genres.length) {
             filters = filters + "with_genres=" + genres.join(",") + "&";
+        }
+        if (rating) {
+            filters = filters + "vote_average=" + rating + "&";
         }
         setFilters(filters);
         setOpen(false);
@@ -62,6 +67,21 @@ export default function Filters({ setFilters }: FiltersProps) {
                         selectedGenres={genres}
                         setSelectedGenres={setGenres}
                     ></GenreSelect>
+                    <Box m={1}>
+                        <Typography component="legend">Minimum Rating</Typography>
+                        <Box sx={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}>
+                            <Rating
+                                name="simple-controlled"
+                                value={rating}
+                                precision={0.5}
+                                onChange={(_, newRating) => setRating(newRating)}
+                                max={10}
+                            />
+                        </Box>
+                    </Box>
                 </DialogContent>
             </BootstrapDialog>
         </>
