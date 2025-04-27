@@ -6,8 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-import { Genre } from '../interface';
-import { get_genres } from '../service';
+import { Genre } from '../../interface';
+import { get_genres } from '../../service';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -21,15 +21,17 @@ const MenuProps = {
 };
 
 interface GenreProps {
-    selectedGenres: number[],
+    selectedGenres: number[];
     setSelectedGenres: (genres: number[]) => void;
 }
 
 export default function GenreSelect({ selectedGenres, setSelectedGenres }: GenreProps) {
     const [genres, setGenres] = React.useState<Genre[]>([]);
-    get_genres().then((data) => {
-        setGenres(data);
-    });
+    React.useEffect(() => {
+        get_genres().then((data) => {
+            setGenres(data);
+        })
+    }, [])
 
     const handleChange = (event: SelectChangeEvent<typeof selectedGenres>) => {
         const value = event.target.value as unknown as number[];

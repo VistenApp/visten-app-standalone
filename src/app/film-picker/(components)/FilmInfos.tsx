@@ -1,13 +1,28 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
+import * as React from "react";
+import { Member } from "../interface";
 
 interface FilmInfosProps {
     film: any;
-    directors: String[];
-    writers: String[];
 }
 
-export default function FilmInfos({ film, directors, writers }: FilmInfosProps) {
+export default function FilmInfos({ film }: FilmInfosProps) {
+    const [directors, setDirectors] = React.useState<String[]>([]);
+    const [writers, setWriters] = React.useState<String[]>([]);
+    React.useEffect(() => {
+        if (!film) return
+
+        const directors = film.credits.crew
+            .filter((member: Member) => member.job === "Director")
+            .map((member: Member) => member.name);
+        setDirectors(directors);
+
+        const writers = film.credits.crew
+            .filter((member: Member) => member.job === "Screenplay" || member.job === "Writer")
+            .map((member: Member) => member.name);
+        setWriters(writers);
+    }, [film])
     return (<>
         {film && (<>
             <Stack
@@ -37,7 +52,7 @@ export default function FilmInfos({ film, directors, writers }: FilmInfosProps) 
                         <Box sx={{ alignItems: "center", display: "inline-flex" }}>
                             <StarIcon sx={{ color: "#faaf00" }} />
                             <Typography>{film.vote_average.toFixed(1)}/10</Typography>
-                            <Typography variant="caption">&nbsp; based on {film.vote_count} votes</Typography>
+                            <Typography variant="caption">&nbsp;based on {film.vote_count} votes</Typography>
                         </Box>
                     </Box>
                     <Stack direction="column" spacing={1} sx={{ textAlign: "left" }}>
