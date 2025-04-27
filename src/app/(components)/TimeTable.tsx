@@ -19,6 +19,7 @@ export function TimeTable() {
     >
       <TimeZone timeZone="Europe/Paris" date={date} />
       <TimeZone timeZone="Asia/Bangkok" date={date} />
+      <TimeZone timeZone="Asia/Shanghai" date={date} />
       <TimeZone timeZone="Asia/Tokyo" date={date} />
     </Stack>
   );
