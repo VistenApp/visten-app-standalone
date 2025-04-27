@@ -7,3 +7,23 @@ export interface Genre {
     id: number;
     name: string;
 }
+
+export interface Credits {
+    crew: Member[];
+    cast: Member[];
+}
+
+export interface Film {
+    id: number;
+    name: string;
+    credits: Credits;
+    poster_path: string;
+    title: string;
+    release_date: string;
+    overview: string;
+    genres: Genre[];
+    runtime: number;
+    vote_count: number;
+    vote_average: number;
+
+}

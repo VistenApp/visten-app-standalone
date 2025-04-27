@@ -1,15 +1,16 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
+import Image from 'next/image'
 import * as React from "react";
-import { Member } from "../interface";
+import { Member, Film } from "../interface";
 
 interface FilmInfosProps {
-    film: any;
+    film: Film;
 }
 
 export default function FilmInfos({ film }: FilmInfosProps) {
-    const [directors, setDirectors] = React.useState<String[]>([]);
-    const [writers, setWriters] = React.useState<String[]>([]);
+    const [directors, setDirectors] = React.useState<string[]>([]);
+    const [writers, setWriters] = React.useState<string[]>([]);
     React.useEffect(() => {
         if (!film) return
 
@@ -32,11 +33,13 @@ export default function FilmInfos({ film }: FilmInfosProps) {
                     margin: 2,
                 }}>
                 <div>
-                    <img
+                    <Image
                         src={film.poster_path}
                         alt="Poster of the Film"
                         loading="lazy"
-                        style={{ width: "300px", height: "450px", borderRadius: "25px" }}
+                        width={300}
+                        height={450}
+                        style={{ borderRadius: "25px" }}
                     />
                 </div>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -69,7 +72,7 @@ export default function FilmInfos({ film }: FilmInfosProps) {
                             &emsp;
                             {film.credits.cast
                                 .slice(0, 4)
-                                .map((member: any) => member.name)
+                                .map((member: Member) => member.name)
                                 .join(", ")}
                         </p>
                         <div>

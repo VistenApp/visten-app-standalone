@@ -5,16 +5,17 @@ import PageWrapper from "../(components)/PageWrapper";
 import { get_random_film } from "./service";
 import FilmInfos from "./(components)/FilmInfos";
 import Filters from "./(components)/(Filters)/Filters";
+import { Film } from "./interface";
 
 export default function FilmPicker() {
     const [alertMessage, setAlertMessage] = React.useState("");
-    const [film, setFilm] = React.useState<any>(null);
+    const [film, setFilm] = React.useState<Film | null>(null);
     const [filters, setFilters] = React.useState<string>("");
 
     React.useEffect(() => {
         get_film();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
 
     function get_film() {
         setAlertMessage("");

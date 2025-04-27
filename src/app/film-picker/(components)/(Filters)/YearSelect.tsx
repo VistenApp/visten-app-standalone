@@ -29,8 +29,7 @@ export default function YearSelect({ minYear, setMinYear, maxYear, setMaxYear }:
         setMaxYear(maxYear);
     };
     return (
-
-        <Box m={1}>
+        <div>
             <Typography component="legend">Release Year</Typography>
             <Box sx={{
                 display: "flex",
@@ -67,7 +66,7 @@ export default function YearSelect({ minYear, setMinYear, maxYear, setMaxYear }:
                     </Select>
                 </FormControl>
             </Box>
-        </Box>
+        </div>
     )
 }
 

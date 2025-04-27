@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,13 +7,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import GenreSelect from './GenreSelect';
 import YearSelect from './YearSelect';
-import { Box, Rating, Typography } from '@mui/material';
+import { Box, Rating, Stack, Typography } from '@mui/material';
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-    '& .MuiDialogContent-root': {
-        padding: theme.spacing(2),
-    },
-}));
 interface FiltersProps {
     setFilters: (filters: string) => void;
 }
@@ -53,9 +47,10 @@ export default function Filters({ setFilters }: FiltersProps) {
             <IconButton onClick={handleClickOpen} sx={{ ml: 1, position: 'absolute' }} >
                 <FilterListIcon />
             </IconButton>
-            <BootstrapDialog
+            <Dialog
                 onClose={handleClose}
                 open={open}
+                sx={{ m: 0 }}
             >
                 <DialogTitle>
                     Filters
@@ -73,32 +68,34 @@ export default function Filters({ setFilters }: FiltersProps) {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent>
-                    <GenreSelect
-                        selectedGenres={genres}
-                        setSelectedGenres={setGenres}
-                    ></GenreSelect>
-                    <Box m={1}>
-                        <Typography component="legend">Minimum Rating</Typography>
-                        <Box sx={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}>
-                            <Rating
-                                name="simple-controlled"
-                                value={rating}
-                                precision={0.5}
-                                onChange={(_, newRating) => setRating(newRating)}
-                                max={10}
-                            />
+                    <Stack spacing={1}>
+                        <GenreSelect
+                            selectedGenres={genres}
+                            setSelectedGenres={setGenres}
+                        ></GenreSelect>
+                        <Box>
+                            <Typography component="legend">Minimum Rating</Typography>
+                            <Box sx={{
+                                display: "flex",
+                                justifyContent: "center"
+                            }}>
+                                <Rating
+                                    name="simple-controlled"
+                                    value={rating}
+                                    precision={0.5}
+                                    onChange={(_, newRating) => setRating(newRating)}
+                                    max={10}
+                                />
+                            </Box>
                         </Box>
-                    </Box>
-                    <YearSelect
-                        minYear={minYear} setMinYear={setMinYear}
-                        maxYear={maxYear} setMaxYear={setMaxYear}
-                    >
-                    </YearSelect>
+                        <YearSelect
+                            minYear={minYear} setMinYear={setMinYear}
+                            maxYear={maxYear} setMaxYear={setMaxYear}
+                        >
+                        </YearSelect>
+                    </Stack>
                 </DialogContent>
-            </BootstrapDialog>
+            </Dialog>
         </>
     );
 }
