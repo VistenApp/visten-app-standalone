@@ -1,8 +1,9 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Link, Stack, Typography } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import Image from 'next/image'
 import * as React from "react";
 import { Member, Film } from "../interface";
+import LaunchIcon from '@mui/icons-material/Launch';
 
 interface FilmInfosProps {
     film: Film;
@@ -44,9 +45,14 @@ export default function FilmInfos({ film }: FilmInfosProps) {
                 </div>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <Box sx={{ textAlign: "left" }}>
-                        <Typography variant="h5">
-                            {film.title}
-                        </Typography>
+                        <Box sx={{ display: "flex", flexDirection: "row", gap: 0.5 }}>
+                            <Typography variant="h5">
+                                {film.title}
+                            </Typography>
+                            <Link target="_blank" href={"https://www.themoviedb.org/movie/" + film.id} style={{ display: "flex", alignItems: "center" }}>
+                                <LaunchIcon />
+                            </Link>
+                        </Box>
                         <Box>
                             <span>{formatDate(film.release_date)}</span>
                             {" • "}

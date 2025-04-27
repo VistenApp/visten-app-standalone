@@ -68,13 +68,17 @@ export default function Navbar() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuItem onClick={() => window.location.href = "/poke-manager"}>
-              <CatchingPokemonIcon />
-              Poke Manager
+            <MenuItem>
+              <Button href="/poke-manager">
+                <CatchingPokemonIcon />
+                Poke Manager
+              </Button>
             </MenuItem>
-            <MenuItem onClick={() => window.location.href = "/film-picker"}>
-              <VideocamIcon />
-              Film Picker
+            <MenuItem>
+              <Button href="/film-picker">
+                <VideocamIcon />
+                Film Picker
+              </Button>
             </MenuItem>
           </Menu>
           <UserMenu />

@@ -26,10 +26,6 @@ export default function UserMenu() {
     window.location.href = "/";
   }
 
-  const handleProfile = () => {
-    window.location.href = "/profile";
-  }
-
   if (isLoggedIn === null) {
     return <div style={{ width: "5ch" }}></div>;
   }
@@ -65,7 +61,11 @@ export default function UserMenu() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuItem onClick={handleProfile}>PROFILE</MenuItem>
+            <MenuItem>
+              <Button href="/profile">
+                PROFILE
+              </Button>
+            </MenuItem>
             <MenuItem onClick={handleLogout}>LOGOUT</MenuItem>
           </Menu>
         </Box>
