@@ -19,21 +19,21 @@ export default function Login() {
   const [alertMessage, setAlertMessage] = React.useState("");
 
   function handleLogin() {
-      let isValid = true;
+    let isValid = true;
 
-      setUsernameIsValid(username != "");
-      isValid = isValid ? username != "" : isValid;
+    setUsernameIsValid(username != "");
+    isValid = isValid ? username != "" : isValid;
 
-      setPasswordIsValid(password != "");
-      isValid = isValid ? password != "" : isValid;
+    setPasswordIsValid(password != "");
+    isValid = isValid ? password != "" : isValid;
 
-      if (isValid) {
-        login(username, password).then(() => {
-          window.location.href = "/";
-        }).catch((error: Error) => {
-          setAlertMessage(error.message);
-        });
-      }
+    if (isValid) {
+      login(username, password).then(() => {
+        window.location.href = "/";
+      }).catch((error: Error) => {
+        setAlertMessage(error.message);
+      });
+    }
   }
 
   return (
@@ -59,8 +59,8 @@ export default function Login() {
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-            error={!passwordIsValid}
-            helperText={!passwordIsValid ? "Password is required" : ""}
+          error={!passwordIsValid}
+          helperText={!passwordIsValid ? "Password is required" : ""}
         />
         <div>
           <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>Login</Button>

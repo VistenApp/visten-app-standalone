@@ -64,18 +64,18 @@ export default function Login() {
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-            error={!passwordIsValid}
-            helperText={!passwordIsValid ? "Password is required" : ""}
+          error={!passwordIsValid}
+          helperText={!passwordIsValid ? "Password is required" : ""}
         />
         <TextField
-            required
-            id="outlined-confirm-password-input"
-            label="Confirm Password"
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            error={!confirmPasswordIsValid}
-            helperText={!confirmPasswordIsValid ? "Passwords do not match" : ""}
+          required
+          id="outlined-confirm-password-input"
+          label="Confirm Password"
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          error={!confirmPasswordIsValid}
+          helperText={!confirmPasswordIsValid ? "Passwords do not match" : ""}
         />
         <div>
           <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>Sign Up</Button>

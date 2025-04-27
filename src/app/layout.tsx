@@ -30,7 +30,7 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Container maxWidth="xl" sx={{ height: "100%" }}>
-              <Navbar/>
+              <Navbar />
               <Container sx={{ height: "100%" }}>
                 {children}
               </Container>

@@ -24,23 +24,23 @@ export default function PokemonForm({ extension, setAlertMessage, setPokemons }:
       return;
     }
     calculate(extension, parseInt(packPoints)).then((pokemons) => {
-        const exchanging_pokemons = pokemons["exchange"]
-        let totalExchangeCost = 0
-        for (let i = 0; i < exchanging_pokemons.length; i++) {
-          exchanging_pokemons[i]["action"] = "EXCHANGE"
-          totalExchangeCost += exchanging_pokemons[i]["exchange_price"]
-        }
-        setTotalExchangeCost(totalExchangeCost.toString())
+      const exchanging_pokemons = pokemons["exchange"]
+      let totalExchangeCost = 0
+      for (let i = 0; i < exchanging_pokemons.length; i++) {
+        exchanging_pokemons[i]["action"] = "EXCHANGE"
+        totalExchangeCost += exchanging_pokemons[i]["exchange_price"]
+      }
+      setTotalExchangeCost(totalExchangeCost.toString())
 
-        const buying_pokemons = pokemons["buy"]
-        let totalPackCost = 0
-        for (let i = 0; i < buying_pokemons.length; i++) {
-          buying_pokemons[i]["action"] = "BUY"
-          totalPackCost += buying_pokemons[i]["pack_price"]
-        }
-        setTotalPackCost(totalPackCost.toString())
+      const buying_pokemons = pokemons["buy"]
+      let totalPackCost = 0
+      for (let i = 0; i < buying_pokemons.length; i++) {
+        buying_pokemons[i]["action"] = "BUY"
+        totalPackCost += buying_pokemons[i]["pack_price"]
+      }
+      setTotalPackCost(totalPackCost.toString())
 
-        setPokemons(exchanging_pokemons.concat(buying_pokemons));
+      setPokemons(exchanging_pokemons.concat(buying_pokemons));
     }
     ).catch((error: Error) => {
       setAlertMessage(error.message);

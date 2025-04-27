@@ -10,12 +10,12 @@ export default function Profile() {
     if (!localStorage.getItem("token")) {
       window.location.href = "/login";
     } else {
-        get_profile().then((data) => {
-          setUsername(data.username);
-        }).catch((error) => {
-          setAlertMessage(error.message);
-          setAlertSeverity("error");
-        });
+      get_profile().then((data) => {
+        setUsername(data.username);
+      }).catch((error) => {
+        setAlertMessage(error.message);
+        setAlertSeverity("error");
+      });
     }
   }, []);
 
@@ -28,7 +28,7 @@ export default function Profile() {
     <PageWrapper title="PROFILE">
       <FormControl sx={{ width: "21ch" }}>
         {alertMessage && (
-          <Alert severity={alertSeverity} sx={{mb: 1}}>{alertMessage}</Alert>
+          <Alert severity={alertSeverity} sx={{ mb: 1 }}>{alertMessage}</Alert>
         )}
         <TextField
           disabled
@@ -91,57 +91,57 @@ function PasswordChangeForm() {
       <div>
         <div>
           <TextField
-              required
-              id="outlined-current-password-input"
-              label="Current Password"
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              error={!currentPasswordIsValid}
-              helperText={!currentPasswordIsValid ? "Current password is required" : ""}
+            required
+            id="outlined-current-password-input"
+            label="Current Password"
+            type="password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            error={!currentPasswordIsValid}
+            helperText={!currentPasswordIsValid ? "Current password is required" : ""}
           />
         </div>
         <div>
           <TextField
-              required
-              id="outlined-new-password-input"
-              label="New Password"
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              error={!newPasswordIsValid}
-              helperText={!newPasswordIsValid ? "New password is required" : ""}
+            required
+            id="outlined-new-password-input"
+            label="New Password"
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            error={!newPasswordIsValid}
+            helperText={!newPasswordIsValid ? "New password is required" : ""}
           />
         </div>
         <div>
           <TextField
-              required
-              id="outlined-confirm-new-password-input"
-              label="Confirm New Password"
-              type="password"
-              value={confirmNewPassword}
-              onChange={(e) => setConfirmNewPassword(e.target.value)}
-              error={!confirmNewPasswordIsValid}
-              helperText={!confirmNewPasswordIsValid ? "Passwords do not match" : ""}
+            required
+            id="outlined-confirm-new-password-input"
+            label="Confirm New Password"
+            type="password"
+            value={confirmNewPassword}
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
+            error={!confirmNewPasswordIsValid}
+            helperText={!confirmNewPasswordIsValid ? "Passwords do not match" : ""}
           />
         </div>
         <div>
-            <Button variant="outlined" onClick={saveNewPassword}>Save</Button>
+          <Button variant="outlined" onClick={saveNewPassword}>Save</Button>
         </div>
       </div>
     );
   } else {
-      passwordForm = (
-          <div>
-              <Button variant="outlined" onClick={changePassword}>Change Password</Button>
-          </div>
-      );
+    passwordForm = (
+      <div>
+        <Button variant="outlined" onClick={changePassword}>Change Password</Button>
+      </div>
+    );
   }
 
   return (
     <div>
       {alertMessage && (
-        <Alert severity={alertSeverity} sx={{mb: 1}}>{alertMessage}</Alert>
+        <Alert severity={alertSeverity} sx={{ mb: 1 }}>{alertMessage}</Alert>
       )}
       {passwordForm}
     </div>

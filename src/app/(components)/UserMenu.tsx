@@ -31,7 +31,7 @@ export default function UserMenu() {
   }
 
   if (isLoggedIn === null) {
-    return <div style={{ width: "5ch"}}></div>;
+    return <div style={{ width: "5ch" }}></div>;
   }
 
   return (

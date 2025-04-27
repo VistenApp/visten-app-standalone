@@ -21,7 +21,7 @@ function renderRating(rating: number) {
       icon: {
         component: DiamondIcon,
       }
-    }}/>;
+    }} />;
 }
 
 function renderDelete(params: GridRenderCellParams, setAlertMessage: (message: string) => void, removePokemon: (id: number) => void) {
@@ -51,7 +51,7 @@ export default function PokeManager() {
   const [extensions, setExtensions] = React.useState<Extension[]>([]);
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID'},
+    { field: 'id', headerName: 'ID' },
     { field: 'name', headerName: 'NAME', minWidth: 150, flex: 1 },
     { field: 'rarity', headerName: 'RARITY', renderCell: (params) => renderRating(params.value), minWidth: 150, flex: 1 },
     { field: 'pack_price', headerName: 'PACK PRICE', minWidth: 200, flex: 1 },
@@ -96,7 +96,7 @@ export default function PokeManager() {
           value={extension}
           label="Extension"
           onChange={handleSelection}
-          sx={{width: "100%", mb: 2}}
+          sx={{ width: "100%", mb: 2 }}
         >
           {extensions.map((extension: Extension) => (
             <MenuItem key={extension.id} value={extension.id}>
@@ -105,26 +105,26 @@ export default function PokeManager() {
           ))}
         </Select>
       </FormControl>
-        {extension && (
-          <Box>
-            <PokemonForm extension={parseInt(extension)} setAlertMessage={setAlertMessage} getPokemons={getPokemons} />
-            <CalculationForm extension={parseInt(extension)} setAlertMessage={setAlertMessage} setPokemons={setPokemons} />
-            <Paper>
-              <DataGrid
-                rows={pokemons}
-                columns={columns}
-                disableRowSelectionOnClick
-                initialState={{
-                  columns: {
-                    columnVisibilityModel: {
-                      id: false,
-                    },
+      {extension && (
+        <Box>
+          <PokemonForm extension={parseInt(extension)} setAlertMessage={setAlertMessage} getPokemons={getPokemons} />
+          <CalculationForm extension={parseInt(extension)} setAlertMessage={setAlertMessage} setPokemons={setPokemons} />
+          <Paper>
+            <DataGrid
+              rows={pokemons}
+              columns={columns}
+              disableRowSelectionOnClick
+              initialState={{
+                columns: {
+                  columnVisibilityModel: {
+                    id: false,
                   },
-                }}
-              />
-            </Paper>
-          </Box>
-        )}
+                },
+              }}
+            />
+          </Paper>
+        </Box>
+      )}
     </PageWrapper>
   )
 }

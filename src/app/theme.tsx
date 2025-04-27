@@ -9,7 +9,7 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default:'#080808',
+      default: '#080808',
     },
     primary: {
       main: '#f3f3f3',
@@ -19,7 +19,7 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-            margin: '8px',
+          margin: '8px',
         },
       },
     },
