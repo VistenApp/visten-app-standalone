@@ -1,9 +1,9 @@
 async function api(endpoint: string, method: string, payload?: object) {
     try {
         const token = localStorage.getItem("token");
-
+        let response;
         if (payload) {
-            return await fetch(
+            response = await fetch(
                 process.env.NEXT_PUBLIC_API_URL + endpoint,
                 {
                     method: method,
@@ -14,19 +14,30 @@ async function api(endpoint: string, method: string, payload?: object) {
                     body: JSON.stringify(payload),
                 }
             )
+        } else {
+            response = await fetch(
+                process.env.NEXT_PUBLIC_API_URL + endpoint,
+                {
+                    method: method,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ` + token,
+                    },
+                }
+            )
         }
-        return await fetch(
-            process.env.NEXT_PUBLIC_API_URL + endpoint,
-            {
-                method: method,
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ` + token,
-                },
-            }
-        )
+        if (!response) {
+            throw new Error("Internal Server Error");
+        }
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error);
+        }
+        return data;
     } catch (error) {
         console.error(error);
+        throw error;
     }
 }
 

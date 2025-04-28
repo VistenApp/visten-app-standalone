@@ -7,7 +7,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import GenreSelect from './GenreSelect';
 import YearSelect from './YearSelect';
-import { Box, Rating, Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
+import RuntimeSelect from './RuntimeSelect';
+import RatingSelect from './RatingSelect';
+import CountrySelect from './CountrySelect';
+import { Country } from '../../interface';
 
 interface FiltersProps {
     setFilters: (filters: string) => void;
@@ -19,6 +23,9 @@ export default function Filters({ setFilters }: FiltersProps) {
     const [rating, setRating] = React.useState<number | null>(0);
     const [minYear, setMinYear] = React.useState<string>("");
     const [maxYear, setMaxYear] = React.useState<string>("");
+    const [hours, setHours] = React.useState<number>(0);
+    const [minutes, setMinutes] = React.useState<number>(0);
+    const [country, setCountry] = React.useState<Country | null>(null);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -37,10 +44,16 @@ export default function Filters({ setFilters }: FiltersProps) {
         if (maxYear) {
             filters = filters + "release_year_max=" + maxYear + "&";
         }
+        const runtime = hours * 60 + minutes;
+        if (runtime) {
+            filters = filters + "runtime=" + runtime + "&";
+        }
+        if (country) {
+            filters = filters + "with_origin_country=" + country.iso_3166_1 + "&";
+        }
         setFilters(filters);
         setOpen(false);
     };
-
 
     return (
         <>
@@ -69,30 +82,20 @@ export default function Filters({ setFilters }: FiltersProps) {
                 </IconButton>
                 <DialogContent>
                     <Stack spacing={1}>
-                        <GenreSelect
-                            selectedGenres={genres}
-                            setSelectedGenres={setGenres}
-                        ></GenreSelect>
-                        <Box>
-                            <Typography component="legend">Minimum Rating</Typography>
-                            <Box sx={{
-                                display: "flex",
-                                justifyContent: "center"
-                            }}>
-                                <Rating
-                                    name="simple-controlled"
-                                    value={rating}
-                                    precision={0.5}
-                                    onChange={(_, newRating) => setRating(newRating)}
-                                    max={10}
-                                />
-                            </Box>
-                        </Box>
                         <YearSelect
                             minYear={minYear} setMinYear={setMinYear}
                             maxYear={maxYear} setMaxYear={setMaxYear}
-                        >
-                        </YearSelect>
+                        />
+                        <RatingSelect rating={rating} setRating={setRating} />
+                        <RuntimeSelect
+                            hours={hours} setHours={setHours}
+                            minutes={minutes} setMinutes={setMinutes}
+                        />
+                        <GenreSelect
+                            selectedGenres={genres}
+                            setSelectedGenres={setGenres}
+                        />
+                        <CountrySelect country={country} setCountry={setCountry} />
                     </Stack>
                 </DialogContent>
             </Dialog>
