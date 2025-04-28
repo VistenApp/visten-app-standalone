@@ -8,6 +8,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { Genre } from '../../interface';
 import { get_genres } from '../../service';
+import { Typography } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -39,13 +40,12 @@ export default function GenreSelect({ selectedGenres, setSelectedGenres }: Genre
 
     return (
         <div>
-            <FormControl sx={{ width: "275px" }}>
-                <InputLabel>Genre</InputLabel>
+            <Typography component="legend" mb={1}>Genre</Typography>
+            <FormControl variant="standard" sx={{ width: "275px" }}>
                 <Select
                     multiple
                     value={selectedGenres}
                     onChange={handleChange}
-                    input={<OutlinedInput label="Genre" />}
                     renderValue={(selected) => {
                         const genresName = genres
                             .filter(genre => selected.includes(genre.id))
