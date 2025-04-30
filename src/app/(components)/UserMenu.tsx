@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
 import { Box } from '@mui/material';
+import { StyledMenuItem, MenuItemButton } from './Navbar';
 
 export default function UserMenu() {
   React.useEffect(() => {
@@ -45,7 +45,6 @@ export default function UserMenu() {
           </Button>
           <Menu
             anchorEl={anchorEl}
-            id="account-menu"
             open={open}
             onClose={handleClose}
             onClick={handleClose}
@@ -61,12 +60,16 @@ export default function UserMenu() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuItem>
-              <Button href="/profile">
+            <StyledMenuItem sx={{ p: 0 }}>
+              <MenuItemButton href="/profile">
                 PROFILE
-              </Button>
-            </MenuItem>
-            <MenuItem onClick={handleLogout}>LOGOUT</MenuItem>
+              </MenuItemButton>
+            </StyledMenuItem>
+            <StyledMenuItem sx={{ p: 0 }}>
+              <MenuItemButton onClick={handleLogout}>
+                LOGOUT
+              </MenuItemButton>
+            </StyledMenuItem>
           </Menu>
         </Box>
       ) : (

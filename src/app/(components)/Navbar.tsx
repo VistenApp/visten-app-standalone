@@ -1,5 +1,5 @@
 'use client';
-import { Box, Button, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Menu, MenuItem, styled, Typography, useMediaQuery } from '@mui/material';
 import * as React from 'react';
 import UserMenu from './UserMenu';
 import theme from '../theme';
@@ -7,6 +7,18 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import VideocamIcon from '@mui/icons-material/Videocam';
 // import TvIcon from '@mui/icons-material/Tv';
+
+export const StyledMenuItem = styled(MenuItem)({
+  padding: 0
+});
+
+export const MenuItemButton = styled(Button)({
+  height: '48px',
+  width: '100%',
+  paddingLeft: 16,
+  paddingRight: 16
+});
+
 
 export default function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -68,18 +80,18 @@ export default function Navbar() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <MenuItem>
-              <Button href="/poke-manager">
+            <StyledMenuItem sx={{ p: 0 }}>
+              <MenuItemButton href="/poke-manager">
                 <CatchingPokemonIcon />
                 Poke Manager
-              </Button>
-            </MenuItem>
-            <MenuItem>
-              <Button href="/film-picker">
+              </MenuItemButton>
+            </StyledMenuItem>
+            <StyledMenuItem sx={{ p: 0 }}>
+              <MenuItemButton href="/film-picker">
                 <VideocamIcon />
                 Film Picker
-              </Button>
-            </MenuItem>
+              </MenuItemButton>
+            </StyledMenuItem>
           </Menu>
           <UserMenu />
         </Box>
