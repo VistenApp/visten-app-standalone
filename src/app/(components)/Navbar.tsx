@@ -6,7 +6,7 @@ import theme from '../theme';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import VideocamIcon from '@mui/icons-material/Videocam';
-// import TvIcon from '@mui/icons-material/Tv';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 
 export const StyledMenuItem = styled(MenuItem)({
   padding: 0
@@ -105,10 +105,10 @@ export default function Navbar() {
             <VideocamIcon />
             Film Picker
           </Button>
-          {/* <Button href="/show-tracker">
-            <TvIcon />
-            Show Tracker
-          </Button> */}
+          <Button href="/shadow-17">
+            <SportsEsportsIcon />
+            Shadow 17
+          </Button>
           <UserMenu />
         </Box>
       )
