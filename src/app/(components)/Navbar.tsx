@@ -39,77 +39,111 @@ export default function Navbar() {
       mb: 3,
       mt: 3,
     }}>
-      <Button
-        href="/"
-        disableRipple
-        sx={{
-          '&:hover': { backgroundColor: 'transparent' },
-          '&:active': { backgroundColor: 'transparent' }
-        }}
-      >
-        <Typography variant="h4">
-          VISTEN
-        </Typography>
-      </Button>
       {isMobile ? (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button
-            id="user-button"
-            aria-controls={open ? 'user-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
-          >
-            <MenuOutlinedIcon />
-          </Button>
-          <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            slotProps={{
-              paper: {
-                elevation: 0,
-                sx: {
-                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                  mt: 1,
+        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Button
+              id="user-button"
+              aria-controls={open ? 'user-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+            >
+              <MenuOutlinedIcon />
+            </Button>
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={open}
+              onClose={handleClose}
+              onClick={handleClose}
+              slotProps={{
+                paper: {
+                  elevation: 0,
+                  sx: {
+                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                    mt: 1,
+                  },
                 },
-              },
-            }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          >
-            <StyledMenuItem sx={{ p: 0 }}>
-              <MenuItemButton href="/poke-manager">
-                <CatchingPokemonIcon />
-                Poke Manager
-              </MenuItemButton>
-            </StyledMenuItem>
-            <StyledMenuItem sx={{ p: 0 }}>
-              <MenuItemButton href="/film-picker">
-                <VideocamIcon />
-                Film Picker
-              </MenuItemButton>
-            </StyledMenuItem>
-          </Menu>
-          <UserMenu />
+              }}
+              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+              <StyledMenuItem sx={{ p: 0 }}>
+                <MenuItemButton href="/poke-manager">
+                  <CatchingPokemonIcon />
+                  Poke Manager
+                </MenuItemButton>
+              </StyledMenuItem>
+              <StyledMenuItem sx={{ p: 0 }}>
+                <MenuItemButton href="/film-picker">
+                  <VideocamIcon />
+                  Film Picker
+                </MenuItemButton>
+              </StyledMenuItem>
+              <StyledMenuItem sx={{ p: 0 }}>
+                <MenuItemButton href="/shadow-17">
+                  <SportsEsportsIcon />
+                  Shadow 17
+                </MenuItemButton>
+              </StyledMenuItem>
+            </Menu>
+          </Box>
+          <Box sx={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1
+          }}>
+            <Button href="/">
+              <Typography variant="h6">
+                VISTEN
+              </Typography>
+            </Button>
+          </Box>
+
+          <Box sx={{ marginLeft: 'auto' }}>
+            <UserMenu />
+          </Box>
         </Box>
       ) : (
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button href="/poke-manager">
-            <CatchingPokemonIcon />
-            Poke Manager
-          </Button>
-          <Button href="/film-picker">
-            <VideocamIcon />
-            Film Picker
-          </Button>
-          <Button href="/shadow-17">
-            <SportsEsportsIcon />
-            Shadow 17
-          </Button>
-          <UserMenu />
+        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Button
+              href="/"
+              disableRipple
+              sx={{
+                '&:hover': { backgroundColor: 'transparent' },
+                '&:active': { backgroundColor: 'transparent' }
+              }}
+            >
+              <Typography variant="h4">
+                VISTEN
+              </Typography>
+            </Button>
+          </Box>
+          <Box sx={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1
+          }}>
+            <Button href="/poke-manager">
+              <CatchingPokemonIcon />
+              Poke Manager
+            </Button>
+            <Button href="/film-picker">
+              <VideocamIcon />
+              Film Picker
+            </Button>
+            <Button href="/shadow-17">
+              <SportsEsportsIcon />
+              Shadow 17
+            </Button>
+          </Box>
+          <Box sx={{ marginLeft: 'auto' }}>
+            <UserMenu />
+          </Box>
         </Box>
       )
       }

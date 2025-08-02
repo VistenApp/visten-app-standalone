@@ -73,11 +73,9 @@ export default function UserMenu() {
           </Menu>
         </Box>
       ) : (
-        <div>
-          <Button variant="text" href="/login">
-            Log In
-          </Button>
-        </div>
+        <Button variant="text" href="/login">
+          Log In
+        </Button>
       )}
     </div>
   );

@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <Box>
-      <TimeTable></TimeTable>
+      {/* <TimeTable></TimeTable> */}
       <Box sx={{ textAlign: "center", width: "100%" }}>
         <Typographie variant="h3">
           WELCOME TO VISTEN <span style={{ whiteSpace: "nowrap" }}>(ㆆ _ ㆆ)</span>
