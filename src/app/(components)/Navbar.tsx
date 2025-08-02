@@ -7,6 +7,7 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import ArticleIcon from '@mui/icons-material/Article';
 
 export const StyledMenuItem = styled(MenuItem)({
   padding: 0
@@ -70,6 +71,12 @@ export default function Navbar() {
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
               <StyledMenuItem sx={{ p: 0 }}>
+                <MenuItemButton href="/hacker-news">
+                  <ArticleIcon />
+                  Hacker News
+                </MenuItemButton>
+              </StyledMenuItem>
+              <StyledMenuItem sx={{ p: 0 }}>
                 <MenuItemButton href="/poke-manager">
                   <CatchingPokemonIcon />
                   Poke Manager
@@ -130,6 +137,10 @@ export default function Navbar() {
             display: 'flex',
             gap: 1,
           }}>
+            <Button href="/hacker-news">
+              <ArticleIcon />
+              Hacker News
+            </Button>
             <Button href="/poke-manager">
               <CatchingPokemonIcon />
               Poke Manager
