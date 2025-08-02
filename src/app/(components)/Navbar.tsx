@@ -126,7 +126,9 @@ export default function Navbar() {
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-            zIndex: 1
+            zIndex: 1,
+            display: 'flex',
+            gap: 1,
           }}>
             <Button href="/poke-manager">
               <CatchingPokemonIcon />

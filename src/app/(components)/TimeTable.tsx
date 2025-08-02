@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Stack, Typography } from "@mui/material";
 
-export function TimeTable() {
+export default function TimeTable() {
   const [date, setDate] = React.useState(new Date());
 
   React.useEffect(() => {

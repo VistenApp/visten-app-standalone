@@ -73,7 +73,7 @@ function computerFormat(film: Film, directors: string[], writers: string[]) {
                         <Typography variant="h5">
                             {film.title}
                         </Typography>
-                        <Link target="_blank" href={"https://www.themoviedb.org/movie/" + film.id} style={{ display: "flex", alignItems: "center" }}>
+                        <Link target="_blank" rel="noreferrer" href={"https://www.themoviedb.org/movie/" + film.id} style={{ display: "flex", alignItems: "center" }}>
                             <LaunchIcon />
                         </Link>
                     </Box>
@@ -146,7 +146,7 @@ function mobileFormat(film: Film, directors: string[], writers: string[]) {
                     <Typography variant="h5" fontSize={15}>
                         {film.title}
                     </Typography>
-                    <Link target="_blank" href={"https://www.themoviedb.org/movie/" + film.id} style={{ display: "flex", alignItems: "center" }}>
+                    <Link target="_blank" rel="noreferrer" href={"https://www.themoviedb.org/movie/" + film.id} style={{ display: "flex", alignItems: "center" }}>
                         <LaunchIcon />
                     </Link>
                 </Box>

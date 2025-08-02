@@ -8,7 +8,7 @@ interface PageWrapperProps {
   children: React.ReactNode;
 }
 
-const PageWrapper: React.FC<PageWrapperProps> = ({ title, alertMessage, children }) => {
+export default function PageWrapper({ title, alertMessage, children }: PageWrapperProps) {
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Typography variant="h4" sx={{ mb: 2 }}>
@@ -21,5 +21,3 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ title, alertMessage, children
     </Box>
   );
 };
-
-export default PageWrapper;
