@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import Typographie from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -15,9 +16,9 @@ export default function Home() {
   }, []);
 
   return (
-    <Box>
+    <>
       {/* <TimeTable></TimeTable> */}
-      <Box sx={{ textAlign: "center", width: "100%", mb: 3 }}>
+      <Box sx={{ textAlign: "center", width: "100%", mb: 3, mt: 3 }}>
         <Typographie variant="h3">
           WELCOME TO VISTEN <span style={{ whiteSpace: "nowrap" }}>(ㆆ _ ㆆ)</span>
         </Typographie>
@@ -42,6 +43,6 @@ export default function Home() {
         )}
       </Box>
       <HackerNews/>
-    </Box>
+    </>
   );
 }

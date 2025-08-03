@@ -6,6 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
 import Container from "@mui/material/Container";
 import Navbar from './(components)/Navbar';
+import { useMediaQuery } from "@mui/material";
 
 const zen_dots = Zen_Dots({
   weight: "400",
@@ -24,17 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={zen_dots.variable} style={{ height: "100%" }}>
-      <body style={{ height: "100%" }}>
+    <html lang="en" className={zen_dots.variable}>
+      <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Container maxWidth="xl" sx={{ height: "100%" }}>
-              <Navbar />
-              <Container sx={{ height: "100%" }}>
-                {children}
-              </Container>
-            </Container>
+            <Navbar />
+            {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

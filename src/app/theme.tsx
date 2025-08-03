@@ -23,6 +23,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          '--Paper-overlay': 'none !important',
+        },
+      },
+    },
   }
 });
 

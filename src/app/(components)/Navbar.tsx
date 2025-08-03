@@ -1,5 +1,5 @@
 'use client';
-import { Box, Button, Menu, MenuItem, styled, Typography, useMediaQuery } from '@mui/material';
+import { AppBar, Box, Button, Container, Menu, MenuItem, styled, Typography, useMediaQuery } from '@mui/material';
 import * as React from 'react';
 import UserMenu from './UserMenu';
 import theme from '../theme';
@@ -33,15 +33,23 @@ export default function Navbar() {
     setAnchorEl(null);
   };
   return (
-    <Box sx={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      mb: 3,
-      mt: 3,
+    <AppBar sx={{
+      position: 'sticky',
+      backgroundColor: "#080808",
+      p: 1,
+      width: "100%",
+      zIndex: 1,
     }}>
       {isMobile ? (
-        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
+        <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            position: 'relative',
+            borderBottom: "1px solid",
+            borderColor: "rgba(243 243 243 / 0.5)",
+          }}
+        >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Button
               href="/"
@@ -113,7 +121,17 @@ export default function Navbar() {
             </Menu>
         </Box>
       ) : (
-        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
+        <Container
+          maxWidth={false}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            position: 'relative',
+            borderBottom: "1px solid",
+            borderColor: "rgba(243 243 243 / 0.5)",
+          }}
+        >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Button
               href="/"
@@ -132,7 +150,6 @@ export default function Navbar() {
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-            zIndex: 1,
             display: 'flex',
             gap: 1,
             whiteSpace: "nowrap"
@@ -157,9 +174,9 @@ export default function Navbar() {
           <Box sx={{ marginLeft: 'auto' }}>
             <UserMenu />
           </Box>
-        </Box>
+        </Container>
       )
       }
-    </Box>
+    </AppBar>
   );
 };

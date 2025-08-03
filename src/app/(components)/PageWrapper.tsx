@@ -1,6 +1,7 @@
-// components/PageWrapper.js
+'use client'
 import React from 'react';
-import { Box, Typography, Alert } from '@mui/material';
+import { Typography, Alert, Container, Box, useMediaQuery } from '@mui/material';
+import theme from '../theme';
 
 interface PageWrapperProps {
   title: string;
@@ -10,21 +11,38 @@ interface PageWrapperProps {
 }
 
 export default function PageWrapper({ title, subTitle, alertMessage, children }: PageWrapperProps) {
-  return (
-    <Box sx={{ textAlign: 'center' }}>
-      {subTitle ? (
-        <Typography variant="h4">
-          {title}
-        </Typography>
-      ) : (
-        <Typography variant="h4" sx={{ mb: 2 }}>
-          {title}
-        </Typography>
-      )}
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
+  const content = (
+    <>
+      <Typography 
+        variant="h4" 
+        sx={{ mb: subTitle ? 0 : 2 }}
+      >
+        {title}
+      </Typography>
+      
       {alertMessage && (
-        <Alert severity="error" sx={{ mb: 2 }}>{alertMessage}</Alert>
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {alertMessage}
+        </Alert>
       )}
+      
       {children}
-    </Box>
+    </>
   );
-};
+
+  const containerProps = {
+    sx: { textAlign: 'center', mt: 3 }
+  };
+
+  return isMobile ? (
+    <Box {...containerProps}>
+      {content}
+    </Box>
+  ) : (
+    <Container {...containerProps}>
+      {content}
+    </Container>
+  );
+}
