@@ -22,7 +22,7 @@ export const MenuItemButton = styled(Button)({
 
 
 export default function Navbar() {
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -44,14 +44,30 @@ export default function Navbar() {
         <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Button
-              id="user-button"
-              aria-controls={open ? 'user-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              onClick={handleClick}
+              href="/"
+              disableRipple
+              sx={{
+                '&:hover': { backgroundColor: 'transparent' },
+                '&:active': { backgroundColor: 'transparent' }
+              }}
             >
-              <MenuOutlinedIcon />
+              <Typography variant="h4">
+                VISTEN
+              </Typography>
             </Button>
+          </Box>
+            <Box sx={{ marginLeft: 'auto', display: "flex"}}>
+              <UserMenu />
+              <Button
+                id="user-button"
+                aria-controls={open ? 'user-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+              >
+                <MenuOutlinedIcon />
+              </Button>
+            </Box>
             <Menu
               anchorEl={anchorEl}
               id="account-menu"
@@ -95,23 +111,6 @@ export default function Navbar() {
                 </MenuItemButton>
               </StyledMenuItem>
             </Menu>
-          </Box>
-          <Box sx={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 1
-          }}>
-            <Button href="/">
-              <Typography variant="h6">
-                VISTEN
-              </Typography>
-            </Button>
-          </Box>
-
-          <Box sx={{ marginLeft: 'auto' }}>
-            <UserMenu />
-          </Box>
         </Box>
       ) : (
         <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
@@ -136,6 +135,7 @@ export default function Navbar() {
             zIndex: 1,
             display: 'flex',
             gap: 1,
+            whiteSpace: "nowrap"
           }}>
             <Button href="/hacker-news">
               <ArticleIcon />

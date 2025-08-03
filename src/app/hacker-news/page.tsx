@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { get_top_stories, get_item } from './service';
 import ChatIcon from '@mui/icons-material/Chat';
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -11,6 +11,7 @@ import PageWrapper from '../(components)/PageWrapper';
 import React from 'react';
 
 export default function HackerNews() {
+  const [loading, setLoading] = React.useState<boolean>(true);
   const [topStories, setTopStories] = React.useState<any[]>([]);
 
   React.useEffect(() => {
@@ -19,13 +20,13 @@ export default function HackerNews() {
         const story = await get_item(id)
         setTopStories(prevStories => [...prevStories, story])
       });
-    });
+    }).finally(() => setLoading(false));
   }, []);
 
   return (
     <PageWrapper title="HACKER NEWS" subTitle={true}>
       <Typography sx={{mb: 2}}>
-        (source: <Link href="https://news.ycombinator.com/news" target="_blank" rel="noreferrer"> https://news.ycombinator.com/news</Link>)
+        (source: <Link href="https://news.ycombinator.com/news" target="_blank" rel="noreferrer" sx={{overflowWrap: "break-word"}}> https://news.ycombinator.com/news</Link>)
       </Typography>
       <List>
         {topStories.map((story, index) => (
@@ -48,6 +49,10 @@ export default function HackerNews() {
           </ListItem>
         ))}
       </List>
+      {loading &&
+      <Box sx={{ width: "100%" }}>
+        <CircularProgress />
+      </Box>}
     </PageWrapper>
   );
 }
