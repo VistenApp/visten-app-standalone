@@ -14,7 +14,7 @@ export default function TimeTable() {
 
   return (
     <Stack
-      direction={{ xs: 'column', sm: 'row' }}
+      direction={{ xs: "column", sm: "row" }}
       sx={{ mb: 3, textAlign: "center" }}
     >
       <TimeZone timeZone="Europe/Paris" date={date} />
@@ -31,19 +31,19 @@ interface TimeZoneProps {
 }
 
 function TimeZone({ timeZone, date }: TimeZoneProps) {
-  return <div style={{ flex: 1 }}>
-    <Typography variant="h5" sx={{ mt: 3 }}>
-      {timeZone.split("/").pop()}
-    </Typography>
-    <p>
-      {
-        new Intl.DateTimeFormat("fr-FR", {
-          hour: '2-digit',
-          minute: '2-digit',
+  return (
+    <div style={{ flex: 1 }}>
+      <Typography variant="h5" sx={{ mt: 3 }}>
+        {timeZone.split("/").pop()}
+      </Typography>
+      <p>
+        {new Intl.DateTimeFormat("fr-FR", {
+          hour: "2-digit",
+          minute: "2-digit",
           timeZoneName: "short",
           timeZone: timeZone,
-        }).format(date)
-      }
-    </p>
-  </div>
+        }).format(date)}
+      </p>
+    </div>
+  );
 }

@@ -1,9 +1,9 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import PersonIcon from '@mui/icons-material/Person';
-import { Box } from '@mui/material';
-import { StyledMenuItem, MenuItemButton } from './Navbar';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import PersonIcon from "@mui/icons-material/Person";
+import { Box } from "@mui/material";
+import { StyledMenuItem, MenuItemButton } from "./Navbar";
 
 export default function UserMenu() {
   React.useEffect(() => {
@@ -24,7 +24,7 @@ export default function UserMenu() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
-  }
+  };
 
   if (isLoggedIn === null) {
     return <div style={{ width: "5ch" }}></div>;
@@ -33,12 +33,12 @@ export default function UserMenu() {
   return (
     <div>
       {isLoggedIn ? (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Button
             id="user-button"
-            aria-controls={open ? 'user-menu' : undefined}
+            aria-controls={open ? "user-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+            aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
             <PersonIcon />
@@ -52,23 +52,19 @@ export default function UserMenu() {
               paper: {
                 elevation: 0,
                 sx: {
-                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                   mt: 1,
                 },
               },
             }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            transformOrigin={{ horizontal: "right", vertical: "top" }}
+            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
             <StyledMenuItem sx={{ p: 0 }}>
-              <MenuItemButton href="/profile">
-                PROFILE
-              </MenuItemButton>
+              <MenuItemButton href="/profile">PROFILE</MenuItemButton>
             </StyledMenuItem>
             <StyledMenuItem sx={{ p: 0 }}>
-              <MenuItemButton onClick={handleLogout}>
-                LOGOUT
-              </MenuItemButton>
+              <MenuItemButton onClick={handleLogout}>LOGOUT</MenuItemButton>
             </StyledMenuItem>
           </Menu>
         </Box>

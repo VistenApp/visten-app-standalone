@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Alert, Button, TextField, FormControl, Link } from '@mui/material';
-import { login } from '../service';
-import PageWrapper from '@/app/(components)/PageWrapper';
+import * as React from "react";
+import { Alert, Button, TextField, FormControl, Link } from "@mui/material";
+import { login } from "../service";
+import PageWrapper from "@/app/(components)/PageWrapper";
 
 export default function Login() {
   React.useEffect(() => {
@@ -28,20 +28,20 @@ export default function Login() {
     isValid = isValid ? password != "" : isValid;
 
     if (isValid) {
-      login(username, password).then(() => {
-        window.location.href = "/";
-      }).catch((error: Error) => {
-        setAlertMessage(error.message);
-      });
+      login(username, password)
+        .then(() => {
+          window.location.href = "/";
+        })
+        .catch((error: Error) => {
+          setAlertMessage(error.message);
+        });
     }
   }
 
   return (
     <PageWrapper title="LOG IN">
       <FormControl sx={{ width: "21ch" }}>
-        {alertMessage && (
-          <Alert severity="error">{alertMessage}</Alert>
-        )}
+        {alertMessage && <Alert severity="error">{alertMessage}</Alert>}
         <TextField
           required
           id="outlined-username-input"
@@ -63,10 +63,14 @@ export default function Login() {
           helperText={!passwordIsValid ? "Password is required" : ""}
         />
         <div>
-          <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>Login</Button>
+          <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>
+            Login
+          </Button>
         </div>
-        <Link sx={{ mt: 1 }} href="/signup">Sign up</Link>
+        <Link sx={{ mt: 1 }} href="/signup">
+          Sign up
+        </Link>
       </FormControl>
     </PageWrapper>
-  )
+  );
 }

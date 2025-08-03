@@ -1,36 +1,36 @@
-'use client';
-import { createTheme } from '@mui/material/styles';
+"use client";
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   cssVariables: true,
   typography: {
-    fontFamily: 'var(--font-zen-dots)',
+    fontFamily: "var(--font-zen-dots)",
   },
   palette: {
-    mode: 'dark',
+    mode: "dark",
     background: {
-      default: '#080808',
+      default: "#080808",
     },
     primary: {
-      main: '#f3f3f3',
+      main: "#f3f3f3",
     },
   },
   components: {
     MuiTextField: {
       styleOverrides: {
         root: {
-          margin: '8px',
+          margin: "8px",
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          '--Paper-overlay': 'none !important',
+          "--Paper-overlay": "none !important",
         },
       },
     },
-  }
+  },
 });
 
 export default theme;

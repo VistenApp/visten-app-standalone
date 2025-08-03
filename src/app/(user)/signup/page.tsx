@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Alert, Button, TextField, FormControl, Link } from '@mui/material';
-import { signup } from '../service';
-import PageWrapper from '@/app/(components)/PageWrapper';
+import * as React from "react";
+import { Alert, Button, TextField, FormControl, Link } from "@mui/material";
+import { signup } from "../service";
+import PageWrapper from "@/app/(components)/PageWrapper";
 
 export default function Login() {
   React.useEffect(() => {
@@ -17,7 +17,8 @@ export default function Login() {
   const [password, setPassword] = React.useState("");
   const [passwordIsValid, setPasswordIsValid] = React.useState(true);
   const [confirmPassword, setConfirmPassword] = React.useState("");
-  const [confirmPasswordIsValid, setConfirmPasswordIsValid] = React.useState(true);
+  const [confirmPasswordIsValid, setConfirmPasswordIsValid] =
+    React.useState(true);
   const [alertMessage, setAlertMessage] = React.useState("");
 
   function handleLogin() {
@@ -33,20 +34,20 @@ export default function Login() {
     isValid = isValid ? password == confirmPassword : isValid;
 
     if (isValid) {
-      signup(username, password).then(() => {
-        window.location.href = "/";
-      }).catch((error: Error) => {
-        setAlertMessage(error.message);
-      });
+      signup(username, password)
+        .then(() => {
+          window.location.href = "/";
+        })
+        .catch((error: Error) => {
+          setAlertMessage(error.message);
+        });
     }
   }
 
   return (
     <PageWrapper title="SIGN UP">
       <FormControl sx={{ width: "21ch" }}>
-        {alertMessage && (
-          <Alert severity="error">{alertMessage}</Alert>
-        )}
+        {alertMessage && <Alert severity="error">{alertMessage}</Alert>}
         <TextField
           required
           id="outlined-username-input"
@@ -78,10 +79,14 @@ export default function Login() {
           helperText={!confirmPasswordIsValid ? "Passwords do not match" : ""}
         />
         <div>
-          <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>Sign Up</Button>
+          <Button sx={{ mt: 1 }} variant="outlined" onClick={handleLogin}>
+            Sign Up
+          </Button>
         </div>
-        <Link sx={{ mt: 1 }} href="/login">Log in</Link>
+        <Link sx={{ mt: 1 }} href="/login">
+          Log in
+        </Link>
       </FormControl>
     </PageWrapper>
-  )
+  );
 }

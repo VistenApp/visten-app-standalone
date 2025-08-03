@@ -1,9 +1,9 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import { Box, Rating, Stack, Typography } from '@mui/material';
-import DiamondIcon from '@mui/icons-material/Diamond';
-import { add_needed_pokemon } from '../service';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import { Box, Rating, Stack, Typography } from "@mui/material";
+import DiamondIcon from "@mui/icons-material/Diamond";
+import { add_needed_pokemon } from "../service";
 
 interface FormDialogProps {
   extension: number;
@@ -11,7 +11,11 @@ interface FormDialogProps {
   getPokemons: (extension: string) => void;
 }
 
-export default function PokemonForm({ extension, setAlertMessage, getPokemons }: FormDialogProps) {
+export default function PokemonForm({
+  extension,
+  setAlertMessage,
+  getPokemons,
+}: FormDialogProps) {
   const [rarity, setRarity] = React.useState<number | null>(0);
   const [name, setName] = React.useState<string>("");
 
@@ -25,21 +29,21 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
       return;
     }
 
-    add_needed_pokemon(extension, name, rarity).then(() => {
-      getPokemons(extension.toString());
-    }
-    ).catch((error: Error) => {
-      setAlertMessage(error.message);
-    });
+    add_needed_pokemon(extension, name, rarity)
+      .then(() => {
+        getPokemons(extension.toString());
+      })
+      .catch((error: Error) => {
+        setAlertMessage(error.message);
+      });
   }
-
 
   return (
     <Stack
-      direction={{ xs: 'column', sm: 'row' }}
+      direction={{ xs: "column", sm: "row" }}
       spacing={{ xs: 2, sm: 5 }}
       sx={{
-        alignItems: 'center',
+        alignItems: "center",
         mb: 2,
       }}
     >
@@ -52,8 +56,8 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
       />
       <Box
         sx={{
-          display: 'inline-flex',
-          alignItems: 'center',
+          display: "inline-flex",
+          alignItems: "center",
           gap: 4,
         }}
       >
@@ -68,7 +72,7 @@ export default function PokemonForm({ extension, setAlertMessage, getPokemons }:
           slotProps={{
             icon: {
               component: DiamondIcon,
-            }
+            },
           }}
         />
       </Box>
