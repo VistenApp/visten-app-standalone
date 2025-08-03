@@ -24,3 +24,15 @@ export async function get_top_stories() {
 export async function get_item(id: number) {
   return await api(`/v0/item/${id}.json`);
 }
+
+export function formatTime(time: number) {
+  const then = new Date(time * 1000);
+  const minutes = Math.floor((Date.now() - then.getTime()) / 60000);
+  if (minutes < 60) return minutes + " minutes";
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return hours + " hours";
+
+  const days = Math.floor(hours / 60);
+  if (days < 60) return days + " days";
+}

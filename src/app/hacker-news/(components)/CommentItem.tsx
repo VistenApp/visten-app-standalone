@@ -7,6 +7,7 @@ import { Comment } from "../interface";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Comments from "./Comments";
+import { formatTime } from "../service";
 
 interface StoryProps {
   comment: Comment;
@@ -58,16 +59,4 @@ export default function CommentItem({ comment }: StoryProps) {
       )}
     </ListItem>
   );
-}
-
-function formatTime(time: number) {
-  const then = new Date(time * 1000);
-  const minutes = Math.floor((Date.now() - then.getTime()) / 60000);
-  if (minutes < 60) return minutes + " minutes";
-
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return hours + " hours";
-
-  const days = Math.floor(hours / 60);
-  if (days < 60) return days + " days";
 }

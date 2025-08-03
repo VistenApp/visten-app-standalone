@@ -9,6 +9,7 @@ import React from "react";
 import theme from "../../theme";
 import { Story } from "../interface";
 import Comments from "./Comments";
+import { formatTime } from "../service";
 
 interface StoryProps {
   story: Story;
@@ -53,9 +54,8 @@ export default function StoryItem({ story, index }: StoryProps) {
         <Box
           sx={{
             ...boxBaseStyles,
-            display: "flex",
-            alignItems: "stretch",
             flex: 1,
+            display: "flex",
           }}
         >
           <span
@@ -68,9 +68,18 @@ export default function StoryItem({ story, index }: StoryProps) {
           >
             {index + 1}.&nbsp;
           </span>
-          <span style={{ wordBreak: "break-word", flex: 1 }}>
-            {story.title}
-          </span>
+          <Box>
+            <span style={{ wordBreak: "break-word" }}>{story.title}</span>
+            <span
+              style={{
+                color: "rgba(243 243 243 / 0.5)",
+                fontSize: "0.75rem",
+                display: "block",
+              }}
+            >
+              {story.score} points by {story.by} {formatTime(story.time)} ago
+            </span>
+          </Box>
         </Box>
         <Box sx={{ gap: 1, display: "flex" }}>
           {story.descendants !== undefined && (

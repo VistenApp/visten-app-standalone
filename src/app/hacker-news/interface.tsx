@@ -1,6 +1,9 @@
 export interface Story {
   id: number;
+  by: string;
   title: string;
+  score: number;
+  time: number;
   descendants: number;
   url: string;
   kids: number[];
