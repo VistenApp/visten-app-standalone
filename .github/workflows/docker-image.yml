@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -25,5 +25,7 @@ jobs:
         with:
           build-args: |
             NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_HACKER_NEWS_API=${{ vars.NEXT_PUBLIC_HACKER_NEWS_API }}
+            NEXT_PUBLIC_HACKER_NEWS_URL=${{ vars.NEXT_PUBLIC_HACKER_NEWS_URL }}
           push: true
           tags: g8ld/visten-app:latest

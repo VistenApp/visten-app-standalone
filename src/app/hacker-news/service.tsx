@@ -1,7 +1,7 @@
 async function api(endpoint: string) {
   try {
     const response = await fetch(
-      process.env.NEXT_PUBLIC_HACKER_NEWS_URL + endpoint
+      process.env.NEXT_PUBLIC_HACKER_NEWS_API + endpoint
     );
     if (!response) {
       throw new Error("Internal Server Error");

@@ -6,6 +6,8 @@ services:
       context: .
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_HACKER_NEWS_API: ${NEXT_PUBLIC_HACKER_NEWS_API}
+        NEXT_PUBLIC_HACKER_NEWS_URL: ${NEXT_PUBLIC_HACKER_NEWS_URL}
     environment:
       NODE_ENV: production
     expose:

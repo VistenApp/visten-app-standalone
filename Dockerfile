@@ -18,6 +18,12 @@ WORKDIR /usr/src/app
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
+ARG NEXT_PUBLIC_HACKER_NEWS_API
+ENV NEXT_PUBLIC_HACKER_NEWS_API=$NEXT_PUBLIC_HACKER_NEWS_API
+
+ARG NEXT_PUBLIC_HACKER_NEWS_URL
+ENV NEXT_PUBLIC_HACKER_NEWS_URL=$NEXT_PUBLIC_HACKER_NEWS_URL
+
 ################################################################################
 # Create a stage for installing production dependecies.
 FROM base AS deps

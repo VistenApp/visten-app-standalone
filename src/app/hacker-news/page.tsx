@@ -29,13 +29,13 @@ export default function HackerNews() {
       <Typography sx={{ mb: 2 }}>
         (source:{" "}
         <Link
-          href="https://news.ycombinator.com/news"
+          href={process.env.NEXT_PUBLIC_HACKER_NEWS_URL}
           target="_blank"
           rel="noreferrer"
           sx={{ overflowWrap: "break-word" }}
         >
           {" "}
-          https://news.ycombinator.com/news
+          {process.env.NEXT_PUBLIC_HACKER_NEWS_URL}
         </Link>
         )
       </Typography>
