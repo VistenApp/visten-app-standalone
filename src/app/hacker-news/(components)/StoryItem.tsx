@@ -45,17 +45,32 @@ export default function StoryItem({ story, index }: StoryProps) {
         sx={{
           width: "100%",
           textAlign: "left",
-          gap: 1,
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
           alignItems: "stretch",
         }}
       >
-        <Box
+        <Button
+          component={Link}
+          href={story.url}
+          target="_blank"
+          rel="noreferrer"
+          underline="none"
           sx={{
             ...boxBaseStyles,
+            m: 0,
             flex: 1,
             display: "flex",
+            alignItems: "stretch",
+            textTransform: "none",
+            fontSize: "1rem",
+            "&:visited": {
+              color: "rgba(128, 128, 128, 0.7)",
+              borderColor: "rgba(128, 128, 128, 0.3)",
+            },
+            "&:visited .MuiSvgIcon-root": {
+              color: "rgba(128, 128, 128, 0.7)",
+            },
           }}
         >
           <span
@@ -68,7 +83,7 @@ export default function StoryItem({ story, index }: StoryProps) {
           >
             {index + 1}.&nbsp;
           </span>
-          <Box>
+          <Box flex={1}>
             <span style={{ wordBreak: "break-word" }}>{story.title}</span>
             <span
               style={{
@@ -80,43 +95,37 @@ export default function StoryItem({ story, index }: StoryProps) {
               {story.score} points by {story.by} {formatTime(story.time)} ago
             </span>
           </Box>
-        </Box>
-        <Box sx={{ gap: 1, display: "flex" }}>
-          {story.descendants !== undefined && (
-            <Button
-              sx={{ ...boxBaseStyles, flex: 1 }}
-              disabled={story.descendants == 0}
-              onClick={() => setOpen(!open)}
-            >
-              <ChatIcon sx={{ verticalAlign: "middle" }} />
-              <span
-                style={{
-                  textAlign: "right",
-                  display: "inline-block",
-                  width: "52px",
-                  flex: 1,
-                }}
-              >
-                {story.descendants}
-              </span>
-            </Button>
-          )}
+          <Box sx={{ display: "flex", alignItems: "center", ml: 1 }}>
+            <LaunchIcon />
+          </Box>
+        </Button>
+        {story.descendants !== undefined && (
           <Button
             sx={{
               ...boxBaseStyles,
-              flex: story.descendants !== undefined ? 0 : 1,
+              mt: isMobile ? 1 : 0,
+              ml: isMobile ? 0 : 1,
+              borderColor:
+                story.descendants == 0
+                  ? "rgba(128, 128, 128, 0.3)"
+                  : "rgba(243 243 243 / 0.5)",
             }}
+            disabled={story.descendants == 0}
+            onClick={() => setOpen(!open)}
           >
-            <Link
-              href={story.url}
-              target="_blank"
-              rel="noreferrer"
-              underline="none"
+            <ChatIcon />
+            <span
+              style={{
+                textAlign: "right",
+                display: "inline-block",
+                width: "52px",
+                flex: 1,
+              }}
             >
-              <LaunchIcon sx={{ verticalAlign: "middle" }} />
-            </Link>
+              {story.descendants}
+            </span>
           </Button>
-        </Box>
+        )}
       </Box>
       <Box
         sx={{
