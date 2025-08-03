@@ -5,7 +5,7 @@ import Typographie from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Link } from "@mui/material";
-import TimeTable from "./(components)/TimeTable";
+// import TimeTable from "./(components)/TimeTable";
 import HackerNews from "./hacker-news/page";
 
 export default function Home() {

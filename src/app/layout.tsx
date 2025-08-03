@@ -4,9 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Zen_Dots } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-import Container from "@mui/material/Container";
 import Navbar from "./(components)/Navbar";
-import { useMediaQuery } from "@mui/material";
 
 const zen_dots = Zen_Dots({
   weight: "400",

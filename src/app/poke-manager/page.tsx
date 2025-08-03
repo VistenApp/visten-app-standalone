@@ -53,7 +53,6 @@ function renderDelete(
       .catch((error: Error) => {
         setAlertMessage(error.message);
       });
-    console.log(id);
   }
 
   return (

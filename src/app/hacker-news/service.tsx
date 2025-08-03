@@ -1,6 +1,6 @@
 async function api(endpoint: string) {
   try {
-    let response = await fetch(
+    const response = await fetch(
       process.env.NEXT_PUBLIC_HACKER_NEWS_URL + endpoint
     );
     if (!response) {
