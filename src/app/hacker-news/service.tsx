@@ -33,6 +33,6 @@ export function formatTime(time: number) {
   const hours = Math.floor(minutes / 60);
   if (hours < 24) return hours + " hours";
 
-  const days = Math.floor(hours / 60);
-  if (days < 60) return days + " days";
+  const days = Math.floor(hours / 24);
+  return days + " days";
 }
