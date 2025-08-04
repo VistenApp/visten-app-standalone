@@ -25,7 +25,7 @@ export default function HackerNews() {
 
   React.useEffect(() => {
     if (storyIds.length === 0) return;
-    fetchData();
+    fetchData(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyIds]);
 
   const fetchData = async () => {

@@ -4,7 +4,6 @@ import { Box, Button, useMediaQuery } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import LaunchIcon from "@mui/icons-material/Launch";
 import Link from "@mui/material/Link";
-import ListItem from "@mui/material/ListItem";
 import React from "react";
 import theme from "../../theme";
 import { Story } from "../interface";
