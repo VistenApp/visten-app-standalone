@@ -31,7 +31,7 @@ export default function StoryItem({ story, index }: StoryProps) {
   };
 
   return (
-    <ListItem
+    <Box
       key={story.id}
       sx={{
         p: 0,
@@ -76,7 +76,7 @@ export default function StoryItem({ story, index }: StoryProps) {
           <span
             style={{
               textAlign: "right",
-              width: "40px",
+              width: "50px",
               display: "inline-block",
               flexShrink: 0,
             }}
@@ -138,6 +138,6 @@ export default function StoryItem({ story, index }: StoryProps) {
       >
         <Comments item_ids={story.kids} open={open} />
       </Box>
-    </ListItem>
+    </Box>
   );
 }
