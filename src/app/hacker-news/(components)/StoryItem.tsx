@@ -32,6 +32,7 @@ export default function StoryItem({ story, index }: StoryProps) {
   return (
     <Box
       key={story.id}
+      id={story.id as unknown as string}
       sx={{
         p: 0,
         mb: isMobile ? 1 : 0,
@@ -57,9 +58,7 @@ export default function StoryItem({ story, index }: StoryProps) {
           underline="none"
           sx={{
             ...boxBaseStyles,
-            m: 0,
             flex: 1,
-            display: "flex",
             alignItems: "stretch",
             textTransform: "none",
             fontSize: "1rem",
@@ -70,13 +69,13 @@ export default function StoryItem({ story, index }: StoryProps) {
             "&:visited .MuiSvgIcon-root": {
               color: "rgba(128, 128, 128, 0.7)",
             },
+            userSelect: "text",
           }}
         >
           <span
             style={{
               textAlign: "right",
               width: "50px",
-              display: "inline-block",
               flexShrink: 0,
             }}
           >
@@ -104,12 +103,8 @@ export default function StoryItem({ story, index }: StoryProps) {
               ...boxBaseStyles,
               mt: isMobile ? 1 : 0,
               ml: isMobile ? 0 : 1,
-              borderColor:
-                story.descendants == 0
-                  ? "rgba(128, 128, 128, 0.3)"
-                  : "rgba(243 243 243 / 0.5)",
+              borderColor: "rgba(243 243 243 / 0.5)",
             }}
-            disabled={story.descendants == 0}
             onClick={() => setOpen(!open)}
           >
             <ChatIcon />
@@ -135,7 +130,11 @@ export default function StoryItem({ story, index }: StoryProps) {
           mb: open ? 1 : 0,
         }}
       >
-        <Comments item_ids={story.kids} open={open} />
+        <Comments
+          comments_count={story.descendants}
+          item_ids={story.kids}
+          open={open}
+        />
       </Box>
     </Box>
   );

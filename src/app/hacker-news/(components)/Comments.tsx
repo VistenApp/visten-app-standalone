@@ -7,53 +7,72 @@ import { get_item } from "../service";
 import CommentItem from "./CommentItem";
 
 interface CommentsProps {
+  comments_count: number;
   item_ids: number[];
   open: boolean;
 }
 
-export default function Comments({ item_ids, open }: CommentsProps) {
+export default function Comments({
+  comments_count,
+  item_ids,
+  open,
+}: CommentsProps) {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [comments, setComments] = React.useState<Comment[]>([]);
 
   React.useEffect(() => {
-    if (open && loading) {
-      const loadComments = async () => {
-        await fetchComments(item_ids, setComments);
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    if (comments_count && item_ids && open && loading) {
+      const fetchComments = async () => {
+        setComments([]);
+        await new Promise((resolve) => setTimeout(resolve, 0));
+        for (const id of item_ids) {
+          if (signal.aborted) return;
+          const comment: Comment = await get_item(id);
+          if (
+            !comment.dead &&
+            !comment.deleted &&
+            comment.text != "[delayed]"
+          ) {
+            setComments((prevComment: Comment[]) => [...prevComment, comment]);
+          }
+        }
         setLoading(false);
       };
-      loadComments();
+      fetchComments();
     }
-  }, [open, item_ids, loading]);
+
+    return () => {
+      controller.abort();
+    };
+  }, [comments_count, item_ids, open, loading]);
+
   return (
     <Collapse in={open} unmountOnExit>
-      <List>
-        {comments.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} />
-        ))}
-      </List>
-      {loading && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            mb: 1,
-          }}
-        >
-          <CircularProgress />
-        </Box>
+      {comments_count ? (
+        <>
+          <List>
+            {comments.map((comment) => (
+              <CommentItem key={comment.id} comment={comment} />
+            ))}
+          </List>
+          {loading && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mb: 1,
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
+        </>
+      ) : (
+        <Box sx={{ m: 1 }}>No comments yet.</Box>
       )}
     </Collapse>
   );
-}
-
-async function fetchComments(
-  ids: number[],
-  set: React.Dispatch<React.SetStateAction<Comment[]>>
-) {
-  for (const id of ids) {
-    const comment: Comment = await get_item(id);
-    if (!comment.dead && !comment.deleted) {
-      set((prevComment: Comment[]) => [...prevComment, comment]);
-    }
-  }
 }

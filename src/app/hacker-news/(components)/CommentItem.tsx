@@ -54,7 +54,11 @@ export default function CommentItem({ comment }: StoryProps) {
               {comment.kids.length} replies
             </span>
           </Link>
-          <Comments item_ids={comment.kids} open={open} />
+          <Comments
+            comments_count={comment.kids.length}
+            item_ids={comment.kids}
+            open={open}
+          />
         </>
       )}
     </ListItem>
