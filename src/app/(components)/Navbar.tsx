@@ -11,11 +11,11 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import * as React from "react";
-import UserMenu from "./UserMenu";
+// import UserMenu from "./UserMenu";
 import theme from "../theme";
-import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+// import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import VideocamIcon from "@mui/icons-material/Videocam";
+// import VideocamIcon from "@mui/icons-material/Videocam";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import ArticleIcon from "@mui/icons-material/Article";
 
@@ -75,7 +75,7 @@ export default function Navbar() {
             </Button>
           </Box>
           <Box sx={{ marginLeft: "auto", display: "flex" }}>
-            <UserMenu />
+            {/* <UserMenu /> */}
             <Button
               id="user-button"
               aria-controls={open ? "user-menu" : undefined}
@@ -110,7 +110,7 @@ export default function Navbar() {
                 Hacker News
               </MenuItemButton>
             </StyledMenuItem>
-            <StyledMenuItem sx={{ p: 0 }}>
+            {/* <StyledMenuItem sx={{ p: 0 }}>
               <MenuItemButton href="/poke-manager">
                 <CatchingPokemonIcon />
                 Poke Manager
@@ -121,7 +121,7 @@ export default function Navbar() {
                 <VideocamIcon />
                 Film Picker
               </MenuItemButton>
-            </StyledMenuItem>
+            </StyledMenuItem> */}
             <StyledMenuItem sx={{ p: 0 }}>
               <MenuItemButton href="/shadow-17">
                 <SportsEsportsIcon />
@@ -168,22 +168,20 @@ export default function Navbar() {
               <ArticleIcon />
               Hacker News
             </Button>
-            <Button href="/poke-manager">
+            {/* <Button href="/poke-manager">
               <CatchingPokemonIcon />
               Poke Manager
             </Button>
             <Button href="/film-picker">
               <VideocamIcon />
               Film Picker
-            </Button>
+            </Button> */}
             <Button href="/shadow-17">
               <SportsEsportsIcon />
               Shadow 17
             </Button>
           </Box>
-          <Box sx={{ marginLeft: "auto" }}>
-            <UserMenu />
-          </Box>
+          <Box sx={{ marginLeft: "auto" }}>{/* <UserMenu /> */}</Box>
         </Container>
       )}
     </AppBar>

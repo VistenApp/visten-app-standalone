@@ -3,17 +3,17 @@
 import React from "react";
 import Typographie from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { Link } from "@mui/material";
+// import Button from "@mui/material/Button";
+// import { Link } from "@mui/material";
 // import TimeTable from "./(components)/TimeTable";
-import HackerNews from "./hacker-news/page";
+// import HackerNews from "./hacker-news/page";
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
-  React.useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
+  // React.useEffect(() => {
+  //   setIsLoggedIn(!!localStorage.getItem("token"));
+  // }, []);
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function Home() {
         <Typographie variant="h5" sx={{ mt: 3 }}>
           This is an app where I put random functionalities...
         </Typographie>
-        {!isLoggedIn && (
+        {/* {!isLoggedIn && (
           <div>
             <Box
               sx={{
@@ -43,9 +43,9 @@ export default function Home() {
               <Link href="/signup">Sign up</Link>
             </Box>
           </div>
-        )}
+        )} */}
       </Box>
-      <HackerNews />
+      {/* <HackerNews /> */}
     </>
   );
 }
